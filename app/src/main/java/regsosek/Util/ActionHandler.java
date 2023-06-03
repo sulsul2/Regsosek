@@ -35,6 +35,9 @@ public class ActionHandler implements ActionListener{
             case "page-6":
                 appManager.routing.showScreen(5);
                 break;
+            case "page-7":
+                appManager.routing.showScreen(6);
+                break;
             case "selesai":
                 appManager.ui.clearField();
                 appManager.routing.showScreen(0);

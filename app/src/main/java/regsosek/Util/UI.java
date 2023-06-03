@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -43,9 +44,9 @@ public class UI {
     public JFrame window;
     public JPanel bgPanel[] = new JPanel[10];
     public JLabel bgLabel[] = new JLabel[10];
-    public JComboBox<String> jenisKelaminDropdown, jwilayahTextDropdown, gKesulitanDropdown, jGangguanDropdown, ijazahDropdown, statKerjaDropdown, jLapanganDropdown, statKedDropdown, statMilikDropdown, jUsahaDropdown, lUsahaDropdown;
-    public JLabel provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, jwilayahLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel;
-    public JTextField provinsiTextField, kabKotTextField, kecamatanTextField, desaKelTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField;
+    public JComboBox<String> jenisKelaminDropdown, gKesulitanDropdown, ijazahDropdown, statKerjaDropdown, statMilikDropdown;
+    public JLabel provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
+    public JTextField provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
 
 
     public UI(AppManager appManager){
@@ -88,18 +89,13 @@ public class UI {
 
     public void generateScreen() {
         // Start
-        // createBackgroundFull(0, "bg.png");
-        // createBackgroundFull(1, "bg.png");
-        // createBackgroundFull(2, "bg.png");
-        // createBackgroundFull(3, "bg.png");
-        // createBackgroundFull(4, "bg.png");
-        // createBackgroundFull(5, "bg.png");
         inputField1();
         inputField2();
         inputField3();
         inputField4();
         inputField5();
         inputField6();
+        inputField7();
     }
 
     public JLabel createLabel(int bgNum, int x, int y, int width, int height, String text, int size){
@@ -211,49 +207,50 @@ public class UI {
 
     public void inputField1(){
         createBackgroundFull(0, "bg.png");
-        provinsiTextField = createTextField(0, 600, 203, 500, 40, 40, 16);
-        kabKotTextField = createTextField(0, 600, 303, 500, 40, 40, 16);
-        kecamatanTextField = createTextField(0, 600, 403, 500, 40, 40, 16);
-        desaKelTextField = createTextField(0, 600, 503, 500, 40, 40, 16);
-        provinsiLabel = createLabel(0, 260, 203, 500, 40, "Provinsi", 40);
-        kabKotLabel = createLabel(0, 260, 303, 500, 40, "Kabupaten/Kota", 40);
-        provinsiLabel = createLabel(0, 260, 403, 500, 40, "Kecamatan", 40);
-        kabKotLabel = createLabel(0, 260, 503, 500, 40, "Desa/Kelurahan", 40);
+        provinsiTextField = createTextField(0, 600, 203, 100, 40, 30, 3);
+        kabKotTextField = createTextField(0, 600, 303, 100, 40, 30, 3);
+        kecamatanTextField = createTextField(0, 600, 403, 130, 40, 30, 4);
+        desaKelTextField = createTextField(0, 600, 503, 130, 40, 30, 4);
+        provinsiLabel = createLabel(0, 260, 203, 500, 40, "Provinsi", 30);
+        kabKotLabel = createLabel(0, 260, 303, 500, 40, "Kabupaten/Kota", 30);
+        provinsiLabel = createLabel(0, 260, 403, 500, 40, "Kecamatan", 30);
+        kabKotLabel = createLabel(0, 260, 503, 500, 40, "Desa/Kelurahan", 30);
         button(0, 1000, 600, 200, 50, "Selanjutnya >", "page-2");
 
         bgPanel[0].add(bgLabel[0]);
         bgPanel[0].setVisible(false);
     }   
-    
+
     public void inputField2(){
         createBackgroundFull(1, "bg.png");
-        noUrutTextField = createTextField(1, 600, 203, 500, 40, 40, 16);
-        nikTextField = createTextField(1, 600, 303, 500, 40, 40, 16);
-        jenisKelaminDropdown = createDropdown(1, 600, 403, 500, 40, 30, new String[]{"Laki-laki", "Perempuan"});
-        // TextField = createTextField(0, 600, 403, 500, 40, 40, 16);
-        umurTextField = createTextField(1, 600, 503, 500, 40, 40, 16);
-        noUrutLabel = createLabel(1, 260, 203, 500, 40, "No Urut", 40);
-        nikLabel = createLabel(1, 260, 303, 500, 40, "NIK", 40);
-        jenisKelaminLabel = createLabel(1, 260, 403, 500, 40, "Jenis Kelamin", 40);
-        umurLabel = createLabel(1, 260, 503, 500, 40, "Umur", 40);
-        button(1, 200, 600, 200, 50, "< Kembali", "page-1");
+        slsTextField = createTextField(1, 600, 203, 160, 40, 30, 5);
+        subSlsTextField = createTextField(1, 800, 203, 100, 40, 30, 3);
+        namaSlsTextField = createTextField(1, 600, 303, 520, 40, 30, 14);
+        lokasiPendataanTextField = createTextField(1, 600, 403, 520, 40, 30, 14);
+        kelKeluargaTextField = createTextField(1, 600, 503, 100, 40, 30, 3);
+        slsLabel = createLabel(1, 260, 203, 500, 40, "Kode SLS", 30);
+        subSlsLabel = createLabel(1, 775, 203, 500, 40, "-", 30);
+        namaSlsLabel = createLabel(1, 260, 303, 500, 40, "Nama SLS", 30);
+        lokasiPendataanLabel = createLabel(1, 260, 403, 500, 40, "Lokasi Pendataan", 30);
+        kelKeluargaLabel = createLabel(1, 260, 503, 500, 40, "Kelompok Keluarga", 30);
         button(1, 1000, 600, 200, 50, "Selanjutnya >", "page-3");
-        
+        button(1, 200, 600, 200, 50, "< Kembali", "page-1");
+
         bgPanel[1].add(bgLabel[1]);
         bgPanel[1].setVisible(false);
-    } 
-    
+    }
+
     public void inputField3(){
         createBackgroundFull(2, "bg.png");
-        jwilayahTextDropdown = createDropdown(2, 600, 203, 500, 40, 40, new String[]{"tes","doang"});
-        urutBangunanTextField = createTextField(2, 600, 303, 500, 40, 40, 16);
-        urutKelTextField = createTextField(2, 600, 403, 500, 40, 40, 16);
-        landmarkTextField = createTextField(2, 600, 503, 500, 40, 40, 16);
+        namaKepalaKeluTextField = createTextField(2, 600, 203, 520, 40, 30, 14);
+        urutBangunanTextField = createTextField(2, 600, 303, 160, 40, 30, 5);
+        urutKelTextField = createTextField(2, 600, 403, 160, 40, 30, 5);
+        landmarkTextField = createTextField(2, 600, 503, 220, 40, 30, 7);
 
-        jwilayahLabel = createLabel(2, 260, 203, 500, 40, "Jenis Wilayah", 40);
-        urutBangunanLabel = createLabel(2, 260, 303, 500, 40, "No Urut Bangunan", 40);
-        urutKelLabel = createLabel(2, 260, 403, 500, 40, "No Urut Keluarga", 40);
-        landmarkLabel = createLabel(2, 260, 503, 500, 40, "ID Landmark", 40);
+        namaKepalaKeluargLabel = createLabel(2, 260, 203, 500, 40, "Nama Kepala Keluarga", 30);
+        urutBangunanLabel = createLabel(2, 260, 303, 500, 40, "No Urut Bangunan", 30);
+        urutKelLabel = createLabel(2, 260, 403, 500, 40, "No Urut Keluarga", 30);
+        landmarkLabel = createLabel(2, 260, 503, 500, 40, "ID Landmark", 30);
         
         button(2, 1000, 600, 200, 50, "Selanjutnya >", "page-4");
         button(2, 200, 600, 200, 50, "< Kembali", "page-2");
@@ -264,38 +261,55 @@ public class UI {
     
     public void inputField4(){
         createBackgroundFull(3, "bg.png");
-        gKesulitanDropdown = createDropdown(3, 600, 203, 500, 40, 30, new String[]{"Ya","Tidak"});
-        jGangguanDropdown = createDropdown(3, 600, 303, 500, 40, 30, new String[]{"Ya","Tidak"});
-        ijazahDropdown = createDropdown(3, 600, 403, 500, 40, 30, new String[]{"Ya","Tidak"});
-        statKerjaDropdown = createDropdown(3, 600, 503, 500, 40, 30, new String[]{"Ya","Tidak"});
-        
-        gKesulitanLabel = createLabel(3, 240, 203, 500, 40, "Gangguan Kesulitan", 30);
-        jGangguanLabel = createLabel(3, 240, 303, 500, 40, "Jenis Gangguan", 30);
-        ijazahLabel = createLabel(3, 240, 403, 500, 40, "Ijazah Terakhir", 30);
-        statKerjaLabel = createLabel(3, 240, 503, 500, 40, "Status Bekerja", 30);
-        addKerjaLabel = createLabel(3, 240, 550, 500, 40, "*dalam seminggu terakhir", 18);
-        
-        button(3, 1000, 600, 200, 50, "Selanjutnya >", "page-5");
-        button(3, 200, 600, 200, 50, "< Kembali", "page-3");
+        noUrutTextField = createTextField(3, 600, 153, 130, 40, 40, 4);
+        namaTextField = createTextField(3, 600, 253, 520, 40, 40, 14);
+        nikTextField = createTextField(3, 600, 353, 520, 40, 40, 14);
+        jenisKelaminDropdown = createDropdown(3, 600, 453, 250, 40, 30, new String[]{"(1) Laki-laki", "(2) Perempuan"});
+        // TextField = createTextField(0, 600, 403, 500, 40, 40, 16);
+        umurTextField = createTextField(3, 600, 553, 100, 40, 30, 3);
+        noUrutLabel = createLabel(3, 260, 153, 500, 40, "No Urut", 30);
+        namaLabel = createLabel(3, 260, 253, 500, 40, "Nama", 30);
+        nikLabel = createLabel(3, 260, 353, 500, 40, "NIK", 30);
+        jenisKelaminLabel = createLabel(3, 260, 453, 500, 40, "Jenis Kelamin", 30);
+        umurLabel = createLabel(3, 260, 553, 500, 40, "Umur", 30);
+        button(3, 200, 650, 200, 50, "< Kembali", "page-3");
+        button(3, 1000, 650, 200, 50, "Selanjutnya >", "page-5");
         
         bgPanel[3].add(bgLabel[3]);
         bgPanel[3].setVisible(false);
-    }
+    } 
+    
     
     public void inputField5(){
         createBackgroundFull(4, "bg.png");
-        jLapanganDropdown = createDropdown(4, 600, 203, 500, 40, 30, new String[]{"Ya","Tidak"});
-        statKedDropdown = createDropdown(4, 600, 303, 500, 40, 30, new String[]{"Ya","Tidak"});
-        statMilikDropdown = createDropdown(4, 600, 403, 500, 40, 30, new String[]{"Ya","Tidak"});
+        statusHubKepalaTextField = createTextField(4, 600, 203, 70, 40, 30, 2);
+        gKesulitanDropdown = createDropdown(4, 600, 303, 700, 40, 30, new String[]{"(1) Ya, sama sekali tidak bisa","(2) Ya, banyak kesulitan dan butuh bantuan","(3) Ya, sedikit kesulitan dan tidak membutuhkan butuh bantuan","(4) Tidak mengalami kesulitan sama sekali"});
+        jGangguanTextField = createTextField(4, 600, 403, 100, 40, 30, 3);
+        ijazahDropdown = createDropdown(4, 600, 503, 520, 40, 30, new String[]{"(1) Belum pernah bersekolah", "(2) SD/Sederajat", "(3) SMP/Sederajat", "(4) SMA/Sederajat", "(5) (Perguruan Tinggi)"});
+    //     statKerjaDropdown = createDropdown(4, 600, 503, 500, 40, 30, new String[]{"Ya","Tidak"});
         
-        jLapanganLabel = createLabel(4, 240, 203, 500, 40, "Jenis Lapangan Usaha", 30);
-        jLapangAddLabel = createLabel(4, 240, 250, 500, 40, "*dalam pekerjaan utama", 18);
-        statKedLabel = createLabel(4, 240, 303, 500, 40, "Status Kedudukan", 30);
-        statKedAddLabel = createLabel(4, 240, 350, 500, 40, "*dalam pekerjaan utama", 18);
-        statMilikLabel = createLabel(4, 240, 403, 500, 40, "Status Kepemilikan Usaha", 30);
+        statusHubKepalaLabel = createLabel(4, 240, 203, 500, 40, "Status hub. (kpl. keluarga)", 30);
+        gKesulitanLabel = createLabel(4, 240, 303, 500, 40, "Gangguan Kesulitan", 30);
+        jGangguanLabel = createLabel(4, 240, 403, 500, 40, "Jenis Gangguan", 30);
+        ijazahLabel = createLabel(4, 240, 503, 500, 40, "Ijazah Terakhir", 30);
+    //     statKerjaLabel = createLabel(4, 240, 503, 500, 40, "Status Bekerja", 30);
+    //     addKerjaLabel = createLabel(4, 240, 550, 500, 40, "*dalam seminggu terakhir", 18);
         
         button(4, 1000, 600, 200, 50, "Selanjutnya >", "page-6");
         button(4, 200, 600, 200, 50, "< Kembali", "page-4");
+
+        gKesulitanDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (gKesulitanDropdown.getSelectedItem().equals("(4) Tidak mengalami kesulitan sama sekali")) {
+                    jGangguanLabel.setVisible(false);
+                    jGangguanTextField.setVisible(false);
+                } else {
+                    jGangguanLabel.setVisible(true);
+                    jGangguanTextField.setVisible(true);
+                }
+            }
+        });
         
         bgPanel[4].add(bgLabel[4]);
         bgPanel[4].setVisible(false);
@@ -303,17 +317,81 @@ public class UI {
     
     public void inputField6(){
         createBackgroundFull(5, "bg.png");
-        jUsahaDropdown = createDropdown(5, 600, 203, 500, 40, 30, new String[]{"Ya","Tidak"});
-        lUsahaDropdown = createDropdown(5, 600, 303, 500, 40, 30, new String[]{"Ya","Tidak"});
+        statKerjaDropdown = createDropdown(5, 600, 203, 220, 40, 30, new String[]{"(1) Ya","(2) Tidak"});
+        jLapanganTextField = createTextField(5, 600, 303, 100, 40, 30, 3);
+        statKedTextField = createTextField(5, 600, 403, 70, 40, 30, 2);
+    //     statMilikDropdown = createDropdown(5, 600, 403, 500, 40, 30, new String[]{"Ya","Tidak"});
         
-        jUsahaLabel = createLabel(5, 200, 203, 500, 40, "Jumlah Usaha yang Dimiliki", 30);
-        lUsahaLabel = createLabel(5, 200, 303, 500, 40, "Lapangan Usaha", 30);
-        lUsahaAddLabel = createLabel(5, 200, 350, 500, 40, "*dari usaha utama", 18);
+        statKerjaLabel = createLabel(5, 240, 203, 500, 40, "Status Bekerja", 30);
+        addKerjaLabel = createLabel(5, 240, 250, 500, 40, "*dalam seminggu terakhir", 18);
+        jLapanganLabel = createLabel(5, 240, 303, 500, 40, "Jenis Lapangan Usaha", 30);
+        jLapangAddLabel = createLabel(5, 240, 350, 500, 40, "*dalam pekerjaan utama", 18);
+        statKedLabel = createLabel(5, 240, 403, 500, 40, "Status Kedudukan", 30);
+        statKedAddLabel = createLabel(5, 240, 450, 500, 40, "*dalam pekerjaan utama", 18);
+    //     statMilikLabel = createLabel(5, 240, 403, 500, 40, "Status Kepemilikan Usaha", 30);
         
+        button(5, 1000, 600, 200, 50, "Selanjutnya >", "page-7");
         button(5, 200, 600, 200, 50, "< Kembali", "page-5");
-        button(5, 1000, 600, 200, 50, "Selesai", "selesai");
 
+        statKerjaDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (statKerjaDropdown.getSelectedItem().equals("(2) Tidak")) {
+                    jLapanganTextField.setVisible(false);
+                    jLapanganLabel.setVisible(false);
+                    jLapangAddLabel.setVisible(false);
+                    statKedTextField.setVisible(false);
+                    statKedLabel.setVisible(false);
+                    statKedAddLabel.setVisible(false);
+                } else {
+                    jLapanganTextField.setVisible(true);
+                    jLapanganLabel.setVisible(true);
+                    jLapangAddLabel.setVisible(true);
+                    statKedTextField.setVisible(true);
+                    statKedLabel.setVisible(true);
+                    statKedAddLabel.setVisible(true);
+                }
+            }
+        });
+        
         bgPanel[5].add(bgLabel[5]);
         bgPanel[5].setVisible(false);
+    }
+    
+    public void inputField7(){
+        createBackgroundFull(6, "bg.png");
+        statMilikDropdown = createDropdown(6, 600, 203, 500, 40, 30, new String[]{"(1) Ya","(2) Tidak"});
+        jUsahaTextField = createTextField(6, 600, 303, 100, 40, 30, 3);
+        lUsahaTextField = createTextField(6, 600, 403, 100, 40, 30, 3);
+        
+        statMilikLabel = createLabel(6, 200, 203, 500, 40, "Status Kepemilikan Usaha", 30);
+        jUsahaLabel = createLabel(6, 200, 303, 500, 40, "Jumlah Usaha yang Dimiliki", 30);
+        lUsahaLabel = createLabel(6, 200, 403, 500, 40, "Lapangan Usaha", 30);
+        lUsahaAddLabel = createLabel(6, 200, 450, 500, 40, "*dari usaha utama", 18);
+        
+        button(6, 200, 600, 200, 50, "< Kembali", "page-6");
+        button(6, 1000, 600, 200, 50, "Selesai", "selesai");
+
+        statMilikDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (statMilikDropdown.getSelectedItem().equals("(2) Tidak")) {
+                    jUsahaTextField.setVisible(false);
+                    jUsahaLabel.setVisible(false);
+                    lUsahaTextField.setVisible(false);
+                    lUsahaLabel.setVisible(false);
+                    lUsahaAddLabel.setVisible(false);
+                } else {
+                    jUsahaTextField.setVisible(true);
+                    jUsahaLabel.setVisible(true);
+                    lUsahaTextField.setVisible(true);
+                    lUsahaLabel.setVisible(true);
+                    lUsahaAddLabel.setVisible(true);
+                }
+            }
+        });
+
+        bgPanel[6].add(bgLabel[6]);
+        bgPanel[6].setVisible(false);
     }
 }
