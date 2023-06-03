@@ -9,17 +9,17 @@ import java.util.List;
  * @author zein
  */
 public class Ruta implements Model {
-    private long id;
+    private int id;
     private Lokasi lokasi;
     private String kelompokKeluarga;
     private String kepalaKeluarga;
-    private int noUrutBangunan;
-    private int noUrutKeluarga;
+    private String noUrutBangunan;
+    private String noUrutKeluarga;
     private String idLandmark;
     private List<Penduduk> anggotaRumahTangga;
 
     public Ruta() {}
-    public Ruta(long id) {
+    public Ruta(int id) {
         this.id = id;
     }
 
@@ -33,17 +33,17 @@ public class Ruta implements Model {
 
     @Override
     public void prepareInsertStatement(PreparedStatement pstmt) throws SQLException {
-        pstmt.setInt(1, getLokasi().getProvinsi());//kode ragu
-        pstmt.setInt(2, getLokasi().getKabKot());
-        pstmt.setInt(3, getLokasi().getKecamatan());
-        pstmt.setInt(4, getLokasi().getDesaKel());
+        pstmt.setString(1, getLokasi().getProvinsi());
+        pstmt.setString(2, getLokasi().getKabKot());
+        pstmt.setString(3, getLokasi().getKecamatan());
+        pstmt.setString(4, getLokasi().getDesaKel());
         pstmt.setString(5, getLokasi().getKodeSLS() + "-" + getLokasi().getKodeSubSLS()); //belum ada gui
-        pstmt.setString(6, getLokasi().getNamaSLS()); //belum ada setter belum ada gui
+        pstmt.setString(6, getLokasi().getNamaSLS()); //belum ada gui
         pstmt.setString(7, getLokasi().getLokasiPendataan());//belum ada gui
         pstmt.setString(8, kelompokKeluarga);//ganti jenis wilayah
         pstmt.setString(9, kepalaKeluarga);//belum ada gui
-        pstmt.setInt(10, noUrutBangunan);
-        pstmt.setInt(11, noUrutKeluarga);
+        pstmt.setString(10, noUrutBangunan);
+        pstmt.setString(11, noUrutKeluarga);
         pstmt.setString(12, idLandmark);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -64,13 +64,13 @@ public class Ruta implements Model {
             Statement stmt = con.createStatement();
             try (ResultSet rs = stmt.executeQuery("SELECT * FROM ruta")) {
                 while(rs.next()) {
-                    Ruta ruta = new Ruta(rs.getLong("id"));
+                    Ruta ruta = new Ruta(rs.getInt("id"));
                     Lokasi lok = new Lokasi();
 
-                    lok.setProvinsi(rs.getInt("provinsi"));
-                    lok.setKabKot(rs.getInt("kabkot"));
-                    lok.setKecamatan(rs.getInt("kecamatan"));
-                    lok.setDesaKel(rs.getInt("desakel"));
+                    lok.setProvinsi(rs.getString("provinsi"));
+                    lok.setKabKot(rs.getString("kabkot"));
+                    lok.setKecamatan(rs.getString("kecamatan"));
+                    lok.setDesaKel(rs.getString("desakel"));
 
                     String[] sls = rs.getString("sls").split("-");
                     if (sls.length != 2) {
@@ -82,11 +82,11 @@ public class Ruta implements Model {
 
                     ruta.setLokasi(lok);
                     ruta.setKelompokKeluarga(rs.getString("kelompok_keluarga"));
-                    ruta.setNoUrutBangunan(rs.getInt("no_bangunan"));
-                    ruta.setNoUrutKeluarga(rs.getInt("no_keluarga"));
+                    ruta.setNoUrutBangunan(rs.getString("no_bangunan"));
+                    ruta.setNoUrutKeluarga(rs.getString("no_keluarga"));
                     ruta.setIdLandmark(rs.getString("id_landmark"));
 
-                    ruta.setAnggotaRumahTangga(Penduduk.getAll(rs.getLong("id")));
+                    ruta.setAnggotaRumahTangga(Penduduk.getAll(rs.getInt("id")));
 
                     daftarRuta.add(ruta);
                 }
@@ -130,7 +130,7 @@ public class Ruta implements Model {
     public void setKelompokKeluarga(String kelompokKeluarga) {
         this.kelompokKeluarga = kelompokKeluarga;
     }
-    public String isKepalaKeluarga() {
+    public String getKepalaKeluarga() {
         return kepalaKeluarga;
     }
 
@@ -143,16 +143,16 @@ public class Ruta implements Model {
     /**
      * @return the noUrutBangunan
      */
-    public int getNoUrutBangunan() {
+    public String getNoUrutBangunan() {
         return noUrutBangunan;
     }
 
     /**
      * @param noUrutBangunan the noUrutBangunan to set
      */
-    public void setNoUrutBangunan(int noUrutBangunan) {
+    public void setNoUrutBangunan(String noUrutBangunan) {
         try{
-        if (noUrutBangunan < 1){
+        if (Integer.parseInt(noUrutBangunan) < 1){
             throw new IllegalArgumentException("Nomor urut bangunan tidak boleh negatif");
         } else this.noUrutBangunan = noUrutBangunan;}
         catch(IllegalArgumentException e){
@@ -163,16 +163,16 @@ public class Ruta implements Model {
     /**
      * @return the noUrutKeluarga
      */
-    public int getNoUrutKeluarga() {
+    public String getNoUrutKeluarga() {
         return noUrutKeluarga;
     }
 
     /**
      * @param noUrutKeluarga the noUrutKeluarga to set
      */
-    public void setNoUrutKeluarga(int noUrutKeluarga) {
+    public void setNoUrutKeluarga(String noUrutKeluarga) {
         try{
-        if (noUrutKeluarga < 1){
+        if (Integer.parseInt(noUrutKeluarga) < 1){
             throw new IllegalArgumentException("Nomor urut keluarga tidak boleh negatif");
         } else this.noUrutKeluarga = noUrutKeluarga;}
         catch(IllegalArgumentException e){
@@ -217,5 +217,8 @@ public class Ruta implements Model {
         this.anggotaRumahTangga = anggotaRumahTangga;
     }
 
+    public void addAnggotaRumahTangga(Penduduk penduduk){
+        anggotaRumahTangga.add(penduduk);
+    }
 
 }

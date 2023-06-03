@@ -5,14 +5,14 @@ package regsosek.models.old;
  * @author zein
  */
 public class Usaha {
-    private int jumlahUsaha;
-    private int lapanganUsaha;
+    private String jumlahUsaha;
+    private String lapanganUsaha;
     private int statusKepemilikan;
 
     /**
      * @return the jumlahUsaha
      */
-    public int getJumlahUsaha() {
+    public String getJumlahUsaha() {
         return jumlahUsaha;
     }
 
@@ -22,8 +22,8 @@ public class Usaha {
      */
     
     //(zein ini hasil kodingan astri dan ninis tapi masih bingung cara ngakses lenght int)
-    public void setJumlahUsaha(int jumlahUsaha) throws Exception {
-        if (jumlahUsaha<1 || jumlahUsaha>99) {
+    public void setJumlahUsaha(String jumlahUsaha) throws Exception {
+        if (Integer.parseInt(jumlahUsaha)<1 || Integer.parseInt(jumlahUsaha)>99) {
             throw new Exception("Harap isi Lapangan Usaha dengan 2 digit angka");
         }
         this.jumlahUsaha = jumlahUsaha;
@@ -32,7 +32,7 @@ public class Usaha {
     /**
      * @return the lapanganUsaha
      */
-    public int getLapanganUsaha() {
+    public String getLapanganUsaha() {
         return lapanganUsaha;
     }
 
@@ -42,9 +42,9 @@ public class Usaha {
      */
     
     //(zein ini hasil kodingan astri dan ninis)
-    public void setLapanganUsaha(int lapanganUsaha) throws Exception {
+    public void setLapanganUsaha(String lapanganUsaha) throws Exception {
         try {
-                if (lapanganUsaha<01||lapanganUsaha>26){
+                if (Integer.parseInt(lapanganUsaha)<1||Integer.parseInt(lapanganUsaha)>26){
                     throw new Exception("Harap isi Lapangan Usaha dengan angka 01 sampai 26");
                 
             }
@@ -57,4 +57,12 @@ public class Usaha {
     public int getStatusKepemilikan(){
         return statusKepemilikan;
     }
+
+    public void setStatusKepemilikan(int statusKepemilikan) throws Exception{
+        if(statusKepemilikan != 1 || statusKepemilikan != 2 ){
+            throw new Exception("Harap isi status kepemilikan usaha dengan angka 1 atau 2");
+        }
+        this.statusKepemilikan = statusKepemilikan;
+    }
+
 }
