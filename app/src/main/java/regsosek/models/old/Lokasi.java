@@ -1,14 +1,16 @@
 package regsosek.models.old;
 
+import com.mysql.cj.protocol.a.NativeConstants.IntegerDataType;
+
 /**
  *
  * @author zein
  */
 public class Lokasi {
-    private Integer provinsi;
-    private Integer kabKot;
-    private Integer kecamatan;
-    private Integer desaKel;
+    private String provinsi;
+    private String kabKot;
+    private String kecamatan;
+    private String desaKel;
     private Integer kodeSLS;
     private Integer kodeSubSLS;
     private String namaSLS;
@@ -17,7 +19,7 @@ public class Lokasi {
     /**
     * @return the provinsi
     */
-    public Integer getProvinsi() {
+    public String getProvinsi() {
         return provinsi;
     }
 
@@ -25,9 +27,9 @@ public class Lokasi {
     * @param provinsi the provinsi to set
     * @throws IllegalArgumentException jika provinsi tidak berada di rentang 0-99
     */
-    public void setProvinsi(Integer provinsi) throws IllegalArgumentException {
+    public void setProvinsi(String provinsi) throws IllegalArgumentException {
         try {
-            if (provinsi < 1 || provinsi > 99) {
+            if (Integer.parseInt(provinsi) < 1 || Integer.parseInt(provinsi) > 99) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 99");
             }
             this.provinsi = provinsi;
@@ -39,16 +41,16 @@ public class Lokasi {
     /**
     * @return the kabKot
     */
-    public Integer getKabKot() {
+    public String getKabKot() {
         return kabKot;
     }
 
     /**
     * @param kabKot the kabKot to set
     */
-    public void setKabKot(Integer kabKot) throws IllegalArgumentException {
+    public void setKabKot(String kabKot) throws IllegalArgumentException {
         try {
-            if (kabKot < 1 || kabKot > 99) {
+            if (Integer.parseInt(kabKot) < 1 || Integer.parseInt(kabKot) > 99) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 99");
             }
             this.kabKot = kabKot;
@@ -60,16 +62,16 @@ public class Lokasi {
     /**
     * @return the kecamatan
     */
-    public Integer getKecamatan() {
+    public String getKecamatan() {
         return kecamatan;
     }
 
     /**
     * @param kecamatan the kecamatan to set
     */
-    public void setKecamatan(Integer kecamatan) throws IllegalArgumentException {
+    public void setKecamatan(String kecamatan) throws IllegalArgumentException {
         try {
-            if (kecamatan < 1 || kecamatan > 999) {
+            if (Integer.parseInt(kecamatan) < 1 || Integer.parseInt(kecamatan) > 999) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 999");
             }
             this.kecamatan = kecamatan;
@@ -81,16 +83,16 @@ public class Lokasi {
     /**
     * @return the desaKel
     */
-    public Integer getDesaKel() {
+    public String getDesaKel() {
         return desaKel;
     }
 
     /**
     * @param desaKel the desaKel to set
     */
-    public void setDesaKel(Integer desaKel) throws IllegalArgumentException {
+    public void setDesaKel(String desaKel) throws IllegalArgumentException {
         try {
-            if (desaKel < 1 || desaKel > 999) {
+            if (Integer.parseInt(desaKel) < 1 || Integer.parseInt(desaKel) > 999) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 999");
             }
             this.desaKel = desaKel;
@@ -143,6 +145,10 @@ public class Lokasi {
 
     public String getNamaSLS(){
         return namaSLS;
+    }
+
+    public void setNamaSLS(String namaSLS){
+        this.namaSLS = namaSLS;
     }
     /**
     * @return the lokasiPendataan

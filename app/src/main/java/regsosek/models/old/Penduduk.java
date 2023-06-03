@@ -9,21 +9,21 @@ import java.util.List;
  * @author zein
  */
 public class Penduduk implements Model {
-    private long id;
-    private long rutaId;
-    private int noUrut;
+    private int id;
+    private int rutaId;
+    private String noUrut;
     private String NIK;
     private String nama;
     private int jenisKelamin;
     private int statusKepala;
-    private int usia;
+    private String usia;
     private Kesulitan kesulitan;
     private int pendidikanTertinggi;
     private Pekerjaan pekerjaan;
     private Usaha usaha;
 
     public Penduduk() {}
-    public Penduduk(long id) {
+    public Penduduk(int id) {
         this.id = id;
     }
 
@@ -31,29 +31,29 @@ public class Penduduk implements Model {
     public String getInsertStatement() {
         return "INSERT INTO penduduk (ruta_id, no_urut, nik, nama,"
                 + "jenis_kelamin, status_kepala,"
-                + "usia, kesulitan, pendidikan, lapangan_usaha,"
-                + "status_kerja, jumlah_usaha, usaha_utama)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "usia, kesulitan, jenis_kesulitan, pendidikan, status_kerja,"
+                + "lapangan_usaha, status_kedudukan, kepemilikan, jumlah_usaha, usaha_utama)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public void prepareInsertStatement(PreparedStatement pstmt) throws SQLException {
         
-        pstmt.setLong(1, rutaId);
-        pstmt.setInt(2, noUrut);
+        pstmt.setInt(1, rutaId);
+        pstmt.setString(2, noUrut);
         pstmt.setString(3, NIK);
         pstmt.setString(4, nama);
         pstmt.setInt(5, jenisKelamin);
         pstmt.setInt(8, statusKepala);
-        pstmt.setInt(8, usia);
+        pstmt.setString(8, usia);
         pstmt.setInt(13, kesulitan.getKesulitan());
-        if (kesulitan != null) {
+        if (kesulitan.getKesulitan() != 4) {
             pstmt.setInt(9, kesulitan.getJenisKesulitan());
         } else {
             pstmt.setNull(9, Types.VARCHAR);
         }
         pstmt.setInt(10, pendidikanTertinggi);
-        pstmt.setInt(16, pekerjaan.getStatusBekerja());//belum ada setter dan jika tidak ada langsung status kepemilikan
+        pstmt.setInt(16, pekerjaan.getStatusBekerja());
         if (pekerjaan.getStatusBekerja() != 2) {
             pstmt.setString(11, pekerjaan.getLapanganUsaha());
             pstmt.setString(12, pekerjaan.getStatusKependudukan());
@@ -61,10 +61,10 @@ public class Penduduk implements Model {
             pstmt.setNull(11, Types.VARCHAR);
             pstmt.setNull(12, Types.VARCHAR);
         }
-        pstmt.setInt(19, usaha.getStatusKepemilikan());//belum ada setter 
+        pstmt.setInt(19, usaha.getStatusKepemilikan());
         if (usaha.getStatusKepemilikan()!= 2) {
-            pstmt.setInt(13, usaha.getJumlahUsaha());
-            pstmt.setString(14, String.valueOf(usaha.getLapanganUsaha()));
+            pstmt.setString(13, usaha.getJumlahUsaha());
+            pstmt.setString(14, usaha.getLapanganUsaha());
         } else {
             pstmt.setInt(13, 0);
             pstmt.setNull(14, Types.VARCHAR);
@@ -113,7 +113,7 @@ public class Penduduk implements Model {
         Database.getInstance().save(this);
     }
 
-    public static List<Penduduk> getAll(long ruta_id) throws SQLException {
+    public static List<Penduduk> getAll(int ruta_id) throws SQLException {
         List<Penduduk> art = new ArrayList<>();
         try (Connection con = Database.getInstance().getConnection()) {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM penduduk WHERE ruta_id=?");
@@ -121,7 +121,7 @@ public class Penduduk implements Model {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    Penduduk penduduk = new Penduduk(rs.getLong("id"));
+                    Penduduk penduduk = new Penduduk(rs.getInt("id"));
                     
                     penduduk.setRutaId(ruta_id);
                     penduduk.setNoUrut(rs.getString("no_urut"));
@@ -129,7 +129,7 @@ public class Penduduk implements Model {
                     penduduk.setNama(rs.getString("nama"));
                     penduduk.setJenisKelamin(rs.getInt("jenis_kelamin"));
                     penduduk.setStatusKepala(rs.getInt("status_kepala"));
-                    penduduk.setUsia(rs.getInt("usia"));
+                    penduduk.setUsia(rs.getString("usia"));
 
                     art.add(penduduk);
                 }
@@ -158,7 +158,7 @@ public class Penduduk implements Model {
     /**
      * @return the noUrut
      */
-    public int getNoUrut() {
+    public String getNoUrut() {
         return noUrut;
     }
 
@@ -172,7 +172,7 @@ public class Penduduk implements Model {
                 if (noUrut.length() != 3) {
                     throw new Exception("Harap isi Nomor Urut Anggota Keluarga dengan 3 digit angka");
                    }
-            this.noUrut = Integer.parseInt(noUrut);
+            this.noUrut = noUrut;
             } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -250,7 +250,7 @@ public class Penduduk implements Model {
     /**
      * @return the usia
      */
-    public int getUsia() {
+    public String getUsia() {
         return usia;
     }
 
@@ -259,9 +259,9 @@ public class Penduduk implements Model {
      * @throws java.lang.Exception
      */
     
-    public void setUsia(int usia) throws Exception {
+    public void setUsia(String usia) throws Exception {
         try {
-                if (usia<01 || usia>99) {
+                if (Integer.parseInt(usia)<1 || Integer.parseInt(usia)>99) {
                     throw new Exception("Harap isi Usia dengan 2 digit angka");
                 }
             this.usia = usia;
@@ -283,14 +283,15 @@ public class Penduduk implements Model {
      */
     
     public void setKesulitan(Kesulitan kesulitan) throws Exception {
-        try {
-             if (usia< 5) {
-                throw new Exception("Usia harus lebih dari 5 tahun");
-            } 
-            this.kesulitan = kesulitan;
-            } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        // try {
+        //      if (kesulitan.getKesulitan()< 5) {
+        //         throw new Exception("Usia harus lebih dari 5 tahun");
+        //     } 
+        //     this.kesulitan = kesulitan;
+        //     } catch (Exception e) {
+        //     System.out.println(e.getMessage());
+        // }
+        this.kesulitan = kesulitan;
        
     }
 
@@ -308,9 +309,9 @@ public class Penduduk implements Model {
     
     public void setPendidikanTertinggi(int pendidikanTertinggi) throws Exception{
         try {
-             if (usia< 5) {
-                throw new Exception("Usia harus lebih dari 5 tahun");
-             }
+            //  if (usia< 5) {
+            //     throw new Exception("Usia harus lebih dari 5 tahun");
+            //  }
              if (pendidikanTertinggi>5||pendidikanTertinggi<1){
                     throw new Exception("Harap isi Pendidikan Tertinggi dengan angka 1 sampai 5");
             }
@@ -335,9 +336,9 @@ public class Penduduk implements Model {
     
     public void setPekerjaan(Pekerjaan pekerjaan) throws Exception {
       try {
-             if (usia< 5) {
-                throw new Exception("Usia harus lebih dari 5 tahun");
-            }
+            //  if (usia< 5) {
+            //     throw new Exception("Usia harus lebih dari 5 tahun");
+            // }
             this.pekerjaan = pekerjaan;
              
             } catch (Exception e) {
@@ -358,14 +359,15 @@ public class Penduduk implements Model {
      */
     
     public void setUsaha(Usaha usaha) throws Exception {
-        try {
-             if (usia< 5) {
-                throw new Exception("Usia harus lebih dari 5 tahun");
-             }
-            this.usaha = usaha;
-            } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }  
+        // try {
+        //      if (usia< 5) {
+        //         throw new Exception("Usia harus lebih dari 5 tahun");
+        //      }
+        //     this.usaha = usaha;
+        //     } catch (Exception e) {
+        //     System.out.println(e.getMessage());
+        // }  
+        this.usaha = usaha;
     }
 
     /**
@@ -375,7 +377,7 @@ public class Penduduk implements Model {
     /**
      * @param rutaId the rutaId to set
      */
-    public void setRutaId(long rutaId) {
+    public void setRutaId(int rutaId) {
         this.rutaId = rutaId;
     }
 

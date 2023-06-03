@@ -18,7 +18,7 @@ public class Database implements Serializable {
     private final String DB_TYPE = "mysql";
     private final String DB_HOST = "localhost";
     private final String DB_PORT = "3306";
-    private final String DB_NAME = "coba";
+    private final String DB_NAME = "kelduareg";
     private final String DB_USER = "root";
     private final String DB_PASS = "";
 
@@ -28,6 +28,11 @@ public class Database implements Serializable {
         }
 
         return instance;
+    }
+    
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:" + DB_TYPE + "://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME, DB_USER,
+                DB_PASS);
     }
 
     public int save(Model model) throws SQLException {
@@ -57,13 +62,13 @@ public class Database implements Serializable {
         return new ArrayList<>();
     }
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(String.format(
-            "jdbc:%s://%s:%s/%s",
-                DB_TYPE,
-                DB_HOST,
-                DB_PORT,
-                DB_NAME
-        ), DB_USER, DB_PASS);
-    }
+    // public Connection getConnection() throws SQLException {
+    //     return DriverManager.getConnection(String.format(
+    //         "jdbc:%s://%s:%s/%s",
+    //             DB_TYPE,
+    //             DB_HOST,
+    //             DB_PORT,
+    //             DB_NAME
+    //     ), DB_USER, DB_PASS);
+    // }
 }
