@@ -44,30 +44,30 @@ public class Penduduk implements Model {
         pstmt.setString(3, NIK);
         pstmt.setString(4, nama);
         pstmt.setInt(5, jenisKelamin);
-        pstmt.setInt(8, statusKepala);
-        pstmt.setString(8, usia);
-        pstmt.setInt(13, kesulitan.getKesulitan());
+        pstmt.setInt(6, statusKepala);
+        pstmt.setString(7, usia);
+        pstmt.setInt(8, kesulitan.getKesulitan());
         if (kesulitan.getKesulitan() != 4) {
             pstmt.setInt(9, kesulitan.getJenisKesulitan());
         } else {
             pstmt.setNull(9, Types.VARCHAR);
         }
         pstmt.setInt(10, pendidikanTertinggi);
-        pstmt.setInt(16, pekerjaan.getStatusBekerja());
+        pstmt.setInt(11, pekerjaan.getStatusBekerja());
         if (pekerjaan.getStatusBekerja() != 2) {
-            pstmt.setString(11, pekerjaan.getLapanganUsaha());
-            pstmt.setString(12, pekerjaan.getStatusKependudukan());
+            pstmt.setString(12, pekerjaan.getLapanganUsaha());
+            pstmt.setString(13, pekerjaan.getStatusKependudukan());
         } else {
-            pstmt.setNull(11, Types.VARCHAR);
             pstmt.setNull(12, Types.VARCHAR);
+            pstmt.setNull(13, Types.VARCHAR);
         }
-        pstmt.setInt(19, usaha.getStatusKepemilikan());
+        pstmt.setInt(14, usaha.getStatusKepemilikan());
         if (usaha.getStatusKepemilikan()!= 2) {
-            pstmt.setString(13, usaha.getJumlahUsaha());
-            pstmt.setString(14, usaha.getLapanganUsaha());
+            pstmt.setString(15, usaha.getJumlahUsaha());
+            pstmt.setString(16, usaha.getLapanganUsaha());
         } else {
-            pstmt.setInt(13, 0);
-            pstmt.setNull(14, Types.VARCHAR);
+            pstmt.setInt(15, 0);
+            pstmt.setNull(16, Types.VARCHAR);
         }
     }
 
