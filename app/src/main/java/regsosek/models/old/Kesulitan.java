@@ -6,9 +6,9 @@ package regsosek.models.old;
  */
 public class Kesulitan {
     private int kesulitan;
-    private int jenisKesulitan;
+    private String jenisKesulitan;
 
-    public Kesulitan(int kesulitan, int jenisKesulitan) {
+    public Kesulitan(int kesulitan, String jenisKesulitan) {
         this.kesulitan = kesulitan;
         this.jenisKesulitan = jenisKesulitan;
     }
@@ -22,11 +22,11 @@ public class Kesulitan {
     //INI BELOM ADA SETTER BUAT JENIS KESULITAN AKHIRE TAK BUAT//
     
    //(zein ini hasil kodingan astri dan ninis) 
-   public int getJenisKesulitan(){
+   public String getJenisKesulitan(){
     return jenisKesulitan;
    }
-    public void setJenisKesulitan(int jenisKesulitan) throws Exception{
-        if(jenisKesulitan<1 || jenisKesulitan>10){
+    public void setJenisKesulitan(String jenisKesulitan) throws Exception{
+        if(Integer.parseInt(jenisKesulitan)<1 || Integer.parseInt(jenisKesulitan)>10){
             throw new Exception("Harap isi dengan angka 1 sampai 10");
         }
         this.jenisKesulitan = jenisKesulitan;

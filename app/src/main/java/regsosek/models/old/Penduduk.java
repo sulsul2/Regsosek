@@ -48,7 +48,7 @@ public class Penduduk implements Model {
         pstmt.setString(7, usia);
         pstmt.setInt(8, kesulitan.getKesulitan());
         if (kesulitan.getKesulitan() != 4) {
-            pstmt.setInt(9, kesulitan.getJenisKesulitan());
+            pstmt.setString(9, kesulitan.getJenisKesulitan());
         } else {
             pstmt.setNull(9, Types.VARCHAR);
         }
