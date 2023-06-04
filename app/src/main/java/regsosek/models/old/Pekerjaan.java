@@ -22,16 +22,8 @@ public class Pekerjaan {
      */
     
     //(zein ini hasil kodingan astri dan ninis)
-    public void setLapanganUsaha(int lapanganUsaha) throws Exception {
-        try {
-            if (lapanganUsaha<01||lapanganUsaha>26){
-                    throw new Exception("Harap isi Lapangan Usaha dengan angka 01 sampai 26");
-                }
-            
-            this.lapanganUsaha = String.valueOf(lapanganUsaha);
-            } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void setLapanganUsaha(String lapanganUsaha) throws Exception {    
+        this.lapanganUsaha = lapanganUsaha;
     }
 
     /**
