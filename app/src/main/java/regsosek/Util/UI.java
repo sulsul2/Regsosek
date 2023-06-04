@@ -235,7 +235,7 @@ public class UI {
         lokasiPendataanLabel = createLabel(1, 260, 403, 500, 40, "Lokasi Pendataan", 30);
         kelKeluargaLabel = createLabel(1, 260, 503, 500, 40, "Kelompok Keluarga", 30);
         button(1, 1000, 600, 200, 50, "Selanjutnya >", "page-3");
-        button(1, 200, 600, 200, 50, "< Kembali", "page-1");
+        button(1, 200, 600, 200, 50, "< Kembali", "kembali-page-1");
 
         bgPanel[1].add(bgLabel[1]);
         bgPanel[1].setVisible(false);
@@ -254,7 +254,7 @@ public class UI {
         landmarkLabel = createLabel(2, 260, 503, 500, 40, "ID Landmark", 30);
         
         button(2, 1000, 600, 200, 50, "Selanjutnya >", "page-4");
-        button(2, 200, 600, 200, 50, "< Kembali", "page-2");
+        button(2, 200, 600, 200, 50, "< Kembali", "kembali-page-2");
         
         bgPanel[2].add(bgLabel[2]);
         bgPanel[2].setVisible(false);
@@ -297,7 +297,7 @@ public class UI {
     //     addKerjaLabel = createLabel(4, 240, 550, 500, 40, "*dalam seminggu terakhir", 18);
         
         button(4, 1000, 600, 200, 50, "Selanjutnya >", "page-6");
-        button(4, 200, 600, 200, 50, "< Kembali", "page-4");
+        button(4, 200, 600, 200, 50, "< Kembali", "kembali-page-4");
 
         gKesulitanDropdown.addActionListener(new ActionListener() {
             @Override
@@ -332,7 +332,7 @@ public class UI {
     //     statMilikLabel = createLabel(5, 240, 403, 500, 40, "Status Kepemilikan Usaha", 30);
         
         button(5, 1000, 600, 200, 50, "Selanjutnya >", "page-7");
-        button(5, 200, 600, 200, 50, "< Kembali", "page-5");
+        button(5, 200, 600, 200, 50, "< Kembali", "kembali-page-5");
 
         statKerjaDropdown.addActionListener(new ActionListener() {
             @Override
@@ -370,9 +370,9 @@ public class UI {
         lUsahaLabel = createLabel(6, 200, 403, 500, 40, "Lapangan Usaha", 30);
         lUsahaAddLabel = createLabel(6, 200, 450, 500, 40, "*dari usaha utama", 18);
         
-        button(6, 200, 600, 200, 50, "< Kembali", "page-6");
+        button(6, 200, 600, 200, 50, "< Kembali", "kembali-page-6");
         button(6, 1000, 600, 200, 50, "Selesai", "selesai");
-        button(6, 500, 600, 200, 50, "Isi Lagi", "Isi Lagi");
+        button(6, 600, 600, 200, 50, "Isi Lagi", "Isi Lagi");
 
         statMilikDropdown.addActionListener(new ActionListener() {
             @Override
