@@ -72,43 +72,6 @@ public class Penduduk implements Model {
         pstmt.setInt(17,0);
     }
 
-        // pstmt.setInt(1,loc.getProvinsi()); //kode masih ragu 
-        // pstmt.setInt(2,loc.getKabKot());//
-        // pstmt.setInt(3, loc.getKecamatan());//
-        // pstmt.setInt(4, loc.getDesaKel());//
-        // pstmt.setInt(5, loc.getKodeSLS());// belum ada gui
-        // pstmt.setInt(6, loc.getKodeSubSLS());// belum ada gui
-        // pstmt.setString(7, loc.getLokasiPendataan());// belum ada gui, bawah ini harusnya jenis wilayah
-        // pstmt.setInt(8, noUrut);//kode masih ragu
-        // pstmt.setString(9, NIK);
-        // pstmt.setString(10, nama);//belum ada gui
-        // pstmt.setInt(11, jenisKelamin);
-        // pstmt.setInt(12, usia);
-        // pstmt.setInt(13, kesulitan.getKesulitan());
-        // pstmt.setInt(14, kesulitan.getJenisKesulitan());//kode masih ragu dan perlu di if null
-        // pstmt.setInt(15, pendidikanTertinggi);
-        // pstmt.setInt(16, pekerjaan.getStatusBekerja());//belum ada setter dan jika tidak ada langsung status kepemilikan
-        // pstmt.setString(17, pekerjaan.getLapanganUsaha());
-        // pstmt.setString(18, pekerjaan.getStatusKependudukan());
-        // pstmt.setInt(19, usaha.getStatusKepemilikan());//belum ada setter 
-        // pstmt.setString(20, );
-        // // if (pekerjaan != null) {
-        // //     pstmt.setString(11, pekerjaan.getLapanganUsaha());
-        // //     pstmt.setString(12, pekerjaan.getStatusKependudukan());
-        // // } else {
-        // //     pstmt.setNull(11, Types.VARCHAR);
-        // //     pstmt.setNull(12, Types.VARCHAR);
-        // // }
-
-        // if (usaha != null) {
-        //     pstmt.setInt(13, usaha.getJumlahUsaha());
-        //     pstmt.setString(14, String.valueOf(usaha.getLapanganUsaha()));
-        // } else {
-        //     pstmt.setInt(13, 0);
-        //     pstmt.setNull(14, Types.VARCHAR);
-        // }
-    //}
-
     @Override
     public void save() throws SQLException {
         Database.getInstance().save(this);
@@ -117,25 +80,32 @@ public class Penduduk implements Model {
     public static List<Penduduk> getAll(int ruta_id) throws SQLException {
         List<Penduduk> art = new ArrayList<>();
         try (Connection con = Database.getInstance().getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM penduduk WHERE ruta_id=" + ruta_id);
-            pstmt.setLong(1, ruta_id);
+            String viewSql = String.format("SELECT * from Penduduk WHERE ruta_id = %d", ruta_id);
+            try(Statement pstmt = con.createStatement()){
+                try (ResultSet rs = pstmt.executeQuery(viewSql)) {
+                    while (rs.next()) {
+                        Penduduk penduduk = new Penduduk(rs.getInt("id"));
+                        
+                        penduduk.setRutaId(ruta_id);
+                        penduduk.setNoUrut(rs.getString("no_urut"));
+                        penduduk.setNIK(rs.getString("nik"));
+                        penduduk.setNama(rs.getString("nama"));
+                        penduduk.setJenisKelamin(rs.getInt("jenis_kelamin"));
+                        penduduk.setStatusKepala(rs.getInt("status_kepala"));
+                        penduduk.setUsia(rs.getString("usia"));
+                        Kesulitan kes = new Kesulitan(rs.getInt("kesulitan"), rs.getString("jenis_kesulitan"));
+                        penduduk.setKesulitan(kes);
+                        penduduk.setPendidikanTertinggi(rs.getInt("pendidikan"));
+                        Pekerjaan pek = new Pekerjaan(rs.getString("lapangan_usaha"), rs.getString("status_kedudukan"), rs.getInt("status_kerja"));
+                        penduduk.setPekerjaan(pek);
+                        Usaha us = new Usaha(rs.getInt("kepemilikan"), rs.getString("jumlah_usaha"), rs.getString("usaha_utama"));
+                        penduduk.setUsaha(us);
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    Penduduk penduduk = new Penduduk(rs.getInt("id"));
-                    
-                    penduduk.setRutaId(ruta_id);
-                    penduduk.setNoUrut(rs.getString("no_urut"));
-                    penduduk.setNIK(rs.getString("nik"));
-                    penduduk.setNama(rs.getString("nama"));
-                    penduduk.setJenisKelamin(rs.getInt("jenis_kelamin"));
-                    penduduk.setStatusKepala(rs.getInt("status_kepala"));
-                    penduduk.setUsia(rs.getString("usia"));
-
-                    art.add(penduduk);
+                        art.add(penduduk);
+                    }
+                } catch(Exception err) {
+                    System.out.println("Error: " + err);
                 }
-            } catch(Exception err) {
-                System.out.println("Error: " + err);
             }
         }
 
@@ -145,14 +115,14 @@ public class Penduduk implements Model {
     /**
      * @return the id
      */
-    public long getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @return the rutaId
      */
-    public long getRutaId() {
+    public int getRutaId() {
         return rutaId;
     }
 

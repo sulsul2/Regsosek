@@ -9,6 +9,14 @@ public class Usaha {
     private String lapanganUsaha;
     private int statusKepemilikan;
 
+    public Usaha(){}
+    
+    public Usaha(int statusKepemilikan, String jumlahUsaha, String lapanganUsaha){
+        this.statusKepemilikan = statusKepemilikan;
+        this.jumlahUsaha = jumlahUsaha;
+        this.lapanganUsaha = lapanganUsaha;
+    }
+
     /**
      * @return the jumlahUsaha
      */

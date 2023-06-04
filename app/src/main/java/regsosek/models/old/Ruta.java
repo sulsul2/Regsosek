@@ -68,34 +68,36 @@ public class Ruta implements Model {
         List<Ruta> daftarRuta = new ArrayList<>();
 
         try (Connection con = Database.getInstance().getConnection()) {
-            Statement stmt = con.createStatement();
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM ruta")) {
-                while(rs.next()) {
-                    Ruta ruta = new Ruta(rs.getInt("id"));
-                    Lokasi lok = new Lokasi();
+            try(Statement stmt = con.createStatement()){
+                try (ResultSet rs = stmt.executeQuery("SELECT * FROM ruta")) {
+                    while(rs.next()) {
+                        Ruta ruta = new Ruta(rs.getInt("id"));
+                        Lokasi lok = new Lokasi();
 
-                    lok.setProvinsi(rs.getString("provinsi"));
-                    lok.setKabKot(rs.getString("kabkot"));
-                    lok.setKecamatan(rs.getString("kecamatan"));
-                    lok.setDesaKel(rs.getString("desakel"));
+                        lok.setProvinsi(rs.getString("provinsi"));
+                        lok.setKabKot(rs.getString("kabkot"));
+                        lok.setKecamatan(rs.getString("kecamatan"));
+                        lok.setDesaKel(rs.getString("desakel"));
 
-                    String[] sls = rs.getString("sls").split("-");
-                    if (sls.length != 2) {
-                        throw new SQLException("Failed parsing sls");
+                        String[] sls = rs.getString("sls").split("-");
+                        if (sls.length != 2) {
+                            throw new SQLException("Failed parsing sls");
+                        }
+
+                        lok.setKodeSLS(sls[0]);
+                        lok.setKodeSubSLS(sls[1]);
+
+                        ruta.setLokasi(lok);
+                        ruta.setKelompokKeluarga(rs.getString("kelompok_keluarga"));
+                        ruta.setKepalaKeluarga(rs.getString("kepala_keluarga"));
+                        ruta.setNoUrutBangunan(rs.getString("no_bangunan"));
+                        ruta.setNoUrutKeluarga(rs.getString("no_keluarga"));
+                        ruta.setIdLandmark(rs.getString("id_landmark"));
+
+                        ruta.setAnggotaRumahTangga(Penduduk.getAll(rs.getInt("id")));
+
+                        daftarRuta.add(ruta);
                     }
-
-                    lok.setKodeSLS(sls[0]);
-                    lok.setKodeSubSLS(sls[1]);
-
-                    ruta.setLokasi(lok);
-                    ruta.setKelompokKeluarga(rs.getString("kelompok_keluarga"));
-                    ruta.setNoUrutBangunan(rs.getString("no_bangunan"));
-                    ruta.setNoUrutKeluarga(rs.getString("no_keluarga"));
-                    ruta.setIdLandmark(rs.getString("id_landmark"));
-
-                    ruta.setAnggotaRumahTangga(Penduduk.getAll(rs.getInt("id")));
-
-                    daftarRuta.add(ruta);
                 }
             }
         }

@@ -9,6 +9,15 @@ public class Pekerjaan {
     private String statusKependudukan;
     private int statusBekerja;
 
+    public Pekerjaan(){
+
+    }
+
+    public Pekerjaan(String lapanganUsaha, String statusKependudukan, int statusBekerja){
+        this.lapanganUsaha = lapanganUsaha;
+        this.statusKependudukan = statusKependudukan;
+        this.statusBekerja = statusBekerja;
+    }
     /**
      * @return the lapanganUsaha
      */
