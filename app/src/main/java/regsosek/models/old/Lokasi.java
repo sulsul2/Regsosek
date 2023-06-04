@@ -11,8 +11,8 @@ public class Lokasi {
     private String kabKot;
     private String kecamatan;
     private String desaKel;
-    private Integer kodeSLS;
-    private Integer kodeSubSLS;
+    private String kodeSLS;
+    private String kodeSubSLS;
     private String namaSLS;
     private String lokasiPendataan;
 
@@ -104,16 +104,16 @@ public class Lokasi {
     /**
     * @return the kodeSLS
     */
-    public Integer getKodeSLS() {
+    public String getKodeSLS() {
         return kodeSLS;
     }
 
     /**
     * @param kodeSLS the kodeSLS to set
     */
-    public void setKodeSLS(Integer kodeSLS)throws IllegalArgumentException {
+    public void setKodeSLS(String kodeSLS)throws IllegalArgumentException {
         try {
-            if (kodeSLS < 1 || kodeSLS > 9999) {
+            if (Integer.parseInt(kodeSLS) < 1 || Integer.parseInt(kodeSLS) > 9999) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 9999");
             }
             this.kodeSLS = kodeSLS;
@@ -125,16 +125,16 @@ public class Lokasi {
     /**
     * @return the kodeSubSLS
     */
-    public Integer getKodeSubSLS() {
+    public String getKodeSubSLS() {
         return kodeSubSLS;
     }
 
     /**
     * @param kodeSubSLS the kodeSubSLS to set
     */
-    public void setKodeSubSLS(Integer kodeSubSLS)throws IllegalArgumentException {
+    public void setKodeSubSLS(String kodeSubSLS)throws IllegalArgumentException {
         try {
-            if (kodeSubSLS < 1 || kodeSubSLS > 99) {
+            if (Integer.parseInt(kodeSubSLS) < 1 || Integer.parseInt(kodeSubSLS) > 99) {
                 throw new IllegalArgumentException("input kode dalam range 1 - 99");
             }
             this.kodeSubSLS = kodeSubSLS;

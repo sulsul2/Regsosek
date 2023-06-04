@@ -77,8 +77,8 @@ public class Ruta implements Model {
                         throw new SQLException("Failed parsing sls");
                     }
 
-                    lok.setKodeSLS(Integer.valueOf(sls[0]));
-                    lok.setKodeSubSLS(Integer.valueOf(sls[1]));
+                    lok.setKodeSLS(sls[0]);
+                    lok.setKodeSubSLS(sls[1]);
 
                     ruta.setLokasi(lok);
                     ruta.setKelompokKeluarga(rs.getString("kelompok_keluarga"));
