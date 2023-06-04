@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Ruta implements Model {
     private int id;
+    private static int indeks = 1;
     private Lokasi lokasi;
     private String kelompokKeluarga;
     private String kepalaKeluarga;
@@ -18,16 +19,20 @@ public class Ruta implements Model {
     private String idLandmark;
     private List<Penduduk> anggotaRumahTangga;
 
-    public Ruta() {}
+    public Ruta() {
+        anggotaRumahTangga = new ArrayList<Penduduk>();
+        // this.id = indeks;
+        // indeks++;
+    }
     public Ruta(int id) {
         this.id = id;
     }
 
     @Override
     public String getInsertStatement() {
-        return "INSERT INTO ruta (provinsi, kabkot, kecamatan, desakel, sls, nama_sls, lokasi_data"
-                + "kelompok_keluarga, kepala_keluarga, no_bangunan, no_keluarga, id_landmark) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT INTO ruta (provinsi, kabkot, kecamatan, desakel, sls, nama_sls, lokasi_data, "
+                + "kelompok_keluarga, kepala_keluarga, no_bangunan, no_keluarga, id_landmark, id) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -45,12 +50,14 @@ public class Ruta implements Model {
         pstmt.setString(10, noUrutBangunan);
         pstmt.setString(11, noUrutKeluarga);
         pstmt.setString(12, idLandmark);
+        pstmt.setInt(13, 0);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
     public void save() throws SQLException {
         this.id = Database.getInstance().save(this);
+        System.out.println(this.id);
         for (Penduduk art : anggotaRumahTangga) {
             art.setRutaId(this.id);
             art.save();

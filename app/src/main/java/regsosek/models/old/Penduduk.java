@@ -32,8 +32,8 @@ public class Penduduk implements Model {
         return "INSERT INTO penduduk (ruta_id, no_urut, nik, nama,"
                 + "jenis_kelamin, status_kepala,"
                 + "usia, kesulitan, jenis_kesulitan, pendidikan, status_kerja,"
-                + "lapangan_usaha, status_kedudukan, kepemilikan, jumlah_usaha, usaha_utama)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "lapangan_usaha, status_kedudukan, kepemilikan, jumlah_usaha, usaha_utama, id)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
@@ -69,6 +69,7 @@ public class Penduduk implements Model {
             pstmt.setInt(15, 0);
             pstmt.setNull(16, Types.VARCHAR);
         }
+        pstmt.setInt(17,0);
     }
 
         // pstmt.setInt(1,loc.getProvinsi()); //kode masih ragu 
@@ -116,7 +117,7 @@ public class Penduduk implements Model {
     public static List<Penduduk> getAll(int ruta_id) throws SQLException {
         List<Penduduk> art = new ArrayList<>();
         try (Connection con = Database.getInstance().getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM penduduk WHERE ruta_id=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM penduduk WHERE ruta_id=" + ruta_id);
             pstmt.setLong(1, ruta_id);
 
             try (ResultSet rs = pstmt.executeQuery()) {

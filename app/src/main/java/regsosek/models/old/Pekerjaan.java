@@ -57,7 +57,7 @@ public class Pekerjaan {
     }
 
    public void setStatusBekerja(int statusBekerja) throws Exception{
-        if(statusBekerja != 1 || statusBekerja != 2 ){
+        if(statusBekerja != 1 && statusBekerja != 2 ){
             throw new Exception("Harap isi status bekerja dengan angka 1 atau 2");
         }
         this.statusBekerja = statusBekerja;

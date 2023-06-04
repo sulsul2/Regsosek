@@ -8,6 +8,10 @@ public class Kesulitan {
     private int kesulitan;
     private String jenisKesulitan;
 
+    public Kesulitan(){
+
+    }
+
     public Kesulitan(int kesulitan, String jenisKesulitan) {
         this.kesulitan = kesulitan;
         this.jenisKesulitan = jenisKesulitan;

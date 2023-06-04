@@ -302,7 +302,7 @@ public class UI {
         gKesulitanDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (gKesulitanDropdown.getSelectedItem().equals("(4) Tidak mengalami kesulitan sama sekali")) {
+                if (gKesulitanDropdown.getSelectedItem().equals("4. Tidak mengalami kesulitan sama sekali")) {
                     jGangguanLabel.setVisible(false);
                     jGangguanTextField.setVisible(false);
                 } else {
@@ -337,7 +337,7 @@ public class UI {
         statKerjaDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (statKerjaDropdown.getSelectedItem().equals("(2) Tidak")) {
+                if (statKerjaDropdown.getSelectedItem().equals("2. Tidak")) {
                     jLapanganTextField.setVisible(false);
                     jLapanganLabel.setVisible(false);
                     jLapangAddLabel.setVisible(false);
@@ -361,7 +361,7 @@ public class UI {
     
     public void inputField7(){
         createBackgroundFull(6, "bg.png");
-        statMilikDropdown = createDropdown(6, 600, 203, 500, 40, 30, new String[]{"(1) Ya","(2) Tidak"});
+        statMilikDropdown = createDropdown(6, 600, 203, 500, 40, 30, new String[]{"1. Ya","2. Tidak"});
         jUsahaTextField = createTextField(6, 600, 303, 100, 40, 30, 3);
         lUsahaTextField = createTextField(6, 600, 403, 100, 40, 30, 3);
         
@@ -372,12 +372,12 @@ public class UI {
         
         button(6, 200, 600, 200, 50, "< Kembali", "page-6");
         button(6, 1000, 600, 200, 50, "Selesai", "selesai");
-        button(6, 1000, 700, 200, 50, "Isi Lagi", "selesai");
+        button(6, 500, 600, 200, 50, "Isi Lagi", "Isi Lagi");
 
         statMilikDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (statMilikDropdown.getSelectedItem().equals("(2) Tidak")) {
+                if (statMilikDropdown.getSelectedItem().equals("2. Tidak")) {
                     jUsahaTextField.setVisible(false);
                     jUsahaLabel.setVisible(false);
                     lUsahaTextField.setVisible(false);
