@@ -50,8 +50,8 @@ public class ActionHandler implements ActionListener{
                         if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) > 0 && Integer.parseInt(appManager.ui.provinsiTextField.getText()) < 100 && Integer.parseInt(appManager.ui.kabKotTextField.getText()) > 1 && Integer.parseInt(appManager.ui.kabKotTextField.getText()) < 100 && Integer.parseInt(appManager.ui.kecamatanTextField.getText()) > 1 && Integer.parseInt(appManager.ui.kecamatanTextField.getText()) < 1000 && Integer.parseInt(appManager.ui.desaKelTextField.getText()) > 1 && Integer.parseInt(appManager.ui.desaKelTextField.getText()) < 1000){
                             appManager.routing.showScreen(1);
                         }
-                        else if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.kabKotTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.kecamatanTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.desaKelTextField.getText()) <= 0){
-                            JOptionPane.showMessageDialog(null, "Kode dimulai dari 01!");
+                        else if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.kabKotTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.kecamatanTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.desaKelTextField.getText()) <= 0){
+                            JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
                         }
                         else if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) >= 100){
                             JOptionPane.showMessageDialog(null, "Kode Provinsi maksimal adalah 99!");
@@ -85,8 +85,8 @@ public class ActionHandler implements ActionListener{
                         if(Integer.parseInt(appManager.ui.slsTextField.getText()) > 0 && Integer.parseInt(appManager.ui.slsTextField.getText()) < 10000 && Integer.parseInt(appManager.ui.subSlsTextField.getText()) > 0 && Integer.parseInt(appManager.ui.subSlsTextField.getText()) < 100 && Integer.parseInt(appManager.ui.kelKeluargaTextField.getText()) > 0 && (Integer.parseInt(appManager.ui.kelKeluargaTextField.getText()) < 12)){
                             appManager.routing.showScreen(2);
                         }
-                        else if(Integer.parseInt(appManager.ui.slsTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.subSlsTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.kelKeluargaTextField.getText()) <= 0){
-                            JOptionPane.showMessageDialog(null, "Kode dimulai dari 01!");
+                        else if(Integer.parseInt(appManager.ui.slsTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.subSlsTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.kelKeluargaTextField.getText()) <= 0){
+                            JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
                         }
                         else if(Integer.parseInt(appManager.ui.slsTextField.getText()) >= 10000){
                             JOptionPane.showMessageDialog(null, "Kode SLS maksimal adalah 9999!");
@@ -131,10 +131,10 @@ public class ActionHandler implements ActionListener{
                             appManager.ruta.setNoUrutBangunan(appManager.ui.urutBangunanTextField.getText());
                             appManager.ruta.setNoUrutKeluarga(appManager.ui.urutKelTextField.getText());
                             appManager.ruta.setIdLandmark(appManager.ui.landmarkTextField.getText());
-                            // System.out.println("oh yes");
+                            System.out.println("oh yes");
                         }
-                        else if(Integer.parseInt(appManager.ui.urutBangunanTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.urutKelTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.landmarkTextField.getText()) <= 0){
-                            JOptionPane.showMessageDialog(null, "Kode dimulai dari 01!");
+                        else if(Integer.parseInt(appManager.ui.urutBangunanTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.urutKelTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.landmarkTextField.getText()) <= 0){
+                            JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
                         }
                         else if(Integer.parseInt(appManager.ui.urutBangunanTextField.getText()) >= 10000){
                             JOptionPane.showMessageDialog(null, "Kode No. Urut Bangunan maksimal adalah 9999!");
@@ -162,11 +162,11 @@ public class ActionHandler implements ActionListener{
             case "page-5":
                 if(!appManager.ui.noUrutTextField.getText().equals("") && !appManager.ui.namaTextField.getText().equals("") && !appManager.ui.nikTextField.getText().equals("") && !appManager.ui.umurTextField.getText().equals("")){
                     if(appManager.ui.noUrutTextField.getText().length() == 3 && appManager.ui.nikTextField.getText().length() == 16 && appManager.ui.umurTextField.getText().length() == 2){
-                        if(Integer.parseInt(appManager.ui.noUrutTextField.getText()) > 0 && Integer.parseInt(appManager.ui.noUrutTextField.getText()) < 1000 && Integer.parseInt(appManager.ui.nikTextField.getText()) > 0 && Integer.parseInt(appManager.ui.umurTextField.getText()) > 0 && (Integer.parseInt(appManager.ui.umurTextField.getText()) < 100)){
+                        if(Integer.parseInt(appManager.ui.noUrutTextField.getText()) > 0 && Integer.parseInt(appManager.ui.noUrutTextField.getText()) < 1000 && Integer.parseInt(appManager.ui.umurTextField.getText()) > 0 && (Integer.parseInt(appManager.ui.umurTextField.getText()) < 100)){
                             appManager.routing.showScreen(4);
                         }
-                        else if(Integer.parseInt(appManager.ui.noUrutTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.nikTextField.getText()) <= 0 && Integer.parseInt(appManager.ui.umurTextField.getText()) <= 0){
-                            JOptionPane.showMessageDialog(null, "Kode dimulai dari 01!");
+                        else if(Integer.parseInt(appManager.ui.noUrutTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.nikTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.umurTextField.getText()) <= 0){
+                            JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
                         }
                         else if(Integer.parseInt(appManager.ui.noUrutTextField.getText()) >= 1000){
                             JOptionPane.showMessageDialog(null, "Kode No. Urut maksimal adalah 999!");
@@ -175,11 +175,11 @@ public class ActionHandler implements ActionListener{
                             JOptionPane.showMessageDialog(null, "Maksimal umur adalah 99!");
                         }
                     }
-                    else if(appManager.ui.urutBangunanTextField.getText().length() != 3){
-                        JOptionPane.showMessageDialog(null, "Isi field No. Urut dengan kode 3 digit!");
-                    }
                     else if(appManager.ui.nikTextField.getText().length() != 16){
                         JOptionPane.showMessageDialog(null, "Isi field NIK dengan 16 digit unik!");
+                    }
+                    else if(appManager.ui.urutBangunanTextField.getText().length() != 3){
+                        JOptionPane.showMessageDialog(null, "Isi field No. Urut dengan kode 3 digit!");
                     }
                     else if(appManager.ui.umurTextField.getText().length() != 2){
                         JOptionPane.showMessageDialog(null, "Isi field umur dengan 2 digit!");
@@ -189,114 +189,352 @@ public class ActionHandler implements ActionListener{
                 }
                 break;
             case "page-6":
-                appManager.routing.showScreen(5);
+                if(appManager.ui.gKesulitanDropdown.getSelectedIndex() != 3){
+                    if(!appManager.ui.statusHubKepalaTextField.getText().equals("") && !appManager.ui.jGangguanTextField.getText().equals("")){
+                        if(appManager.ui.statusHubKepalaTextField.getText().length() == 1 && appManager.ui.jGangguanTextField.getText().length() == 2){
+                            if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) < 9 && Integer.parseInt(appManager.ui.jGangguanTextField.getText()) > 0 && Integer.parseInt(appManager.ui.jGangguanTextField.getText()) < 11){
+                                appManager.routing.showScreen(5);
+                            }
+                            else if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.jGangguanTextField.getText()) <= 0){
+                                JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) >= 9){
+                                JOptionPane.showMessageDialog(null, "Kode Status Hub. dengan Kpl. Keluarga maksimal adalah 8!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.jGangguanTextField.getText()) >= 11){
+                                JOptionPane.showMessageDialog(null, "Kode Jenis Gangguan maksimal adalah 10!");
+                            }
+                        }
+                        else if(appManager.ui.statusHubKepalaTextField.getText().length() != 1){
+                            JOptionPane.showMessageDialog(null, "Isi field Status Hub. dengan Kpl. Keluarga dengan kode 1 digit!");
+                        }
+                        else if(appManager.ui.jGangguanTextField.getText().length() != 2){
+                            JOptionPane.showMessageDialog(null, "Isi field Jenis Gangguan dengan kode 2 digit!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
+                    }
+                }else{
+                    if(!appManager.ui.statusHubKepalaTextField.getText().equals("")){
+                        if(appManager.ui.statusHubKepalaTextField.getText().length() == 1){
+                            if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) < 9){
+                                appManager.routing.showScreen(5);
+                            }
+                            else if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) <= 0){
+                                JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()) >= 9){
+                                JOptionPane.showMessageDialog(null, "Kode Status Hub. dengan Kpl. Keluarga maksimal adalah 8!");
+                            }
+                        }
+                        else if(appManager.ui.statusHubKepalaTextField.getText().length() != 1){
+                            JOptionPane.showMessageDialog(null, "Isi field Status Hub. dengan Kpl. Keluarga dengan kode 1 digit!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
+                    } 
+                }
                 break;
             case "page-7":
-                appManager.routing.showScreen(6);
+                if(appManager.ui.statKerjaDropdown.getSelectedIndex() == 0){
+                    if(!appManager.ui.jLapanganTextField.getText().equals("") && !appManager.ui.statKedTextField.getText().equals("")){
+                        if(appManager.ui.statKedTextField.getText().length() == 1){
+                            if(Integer.parseInt(appManager.ui.statKedTextField.getText()) > 0 && Integer.parseInt(appManager.ui.statKedTextField.getText()) < 9){
+                                appManager.routing.showScreen(6);
+                            }
+                            else if(Integer.parseInt(appManager.ui.statKedTextField.getText()) <= 0){
+                                JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.statKedTextField.getText()) >= 9){
+                                JOptionPane.showMessageDialog(null, "Kode Status Kedudukan maksimal adalah 8!");
+                            }
+                        }
+                        else if(appManager.ui.statKedTextField.getText().length() != 1){
+                            JOptionPane.showMessageDialog(null, "Isi field Status Kedudukan dengan kode 1 digit!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
+                    }
+                } else {
+                    appManager.routing.showScreen(6);
+                }
                 break;
             case "Isi Lagi":
-                try{
-                    System.out.println("Komeng");
-                    appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                    System.out.println("Komeng1");
-                    appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
-                    appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
-                    if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
-                        appManager.penduduk.setJenisKelamin(1);
-                    } else {
-                        appManager.penduduk.setJenisKelamin(2);
+                if(appManager.ui.statMilikDropdown.getSelectedIndex() == 0){
+                    if(!appManager.ui.jUsahaTextField.getText().equals("") && !appManager.ui.lUsahaTextField.getText().equals("")){
+                        if(appManager.ui.jUsahaTextField.getText().length() == 2){
+                            if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.jUsahaTextField.getText()) < 100){
+                                // appManager.routing.showScreen(6);
+                                try{
+                                    System.out.println("Komeng");
+                                    appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
+                                    System.out.println("Komeng1");
+                                    appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
+                                    appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
+                                    if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
+                                        appManager.penduduk.setJenisKelamin(1);
+                                    } else {
+                                        appManager.penduduk.setJenisKelamin(2);
+                                    }
+                                    appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
+                                    appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
+                                    int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
+                                    Kesulitan kes = new Kesulitan();
+                                    kes.setKesulitan(temp+1);
+                                    if(temp != 3){
+                                        kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
+                                        System.out.println("komengsakit");
+                                    }
+                                    appManager.penduduk.setKesulitan(kes);
+                                    int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
+                                    appManager.penduduk.setPendidikanTertinggi(temp1+1);
+                                    Pekerjaan pek = new Pekerjaan();                  
+                                    int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
+                                    pek.setStatusBekerja(temp2 + 1);
+                                    if(temp2 == 0){
+                                        pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
+                                        pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
+                                        System.out.println("komengaw");
+                                    }
+                                    appManager.penduduk.setPekerjaan(pek);
+                                    System.out.println("Komeng3");
+                                    Usaha us = new Usaha();
+                                    int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
+                                    System.out.println(temp3);
+                                    us.setStatusKepemilikan(temp3+1);
+                                    System.out.println("Komengkepala");
+                                    if(temp3 == 0){
+                                        us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
+                                        System.out.println("komengsulit");
+                                        us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
+                                        System.out.println("komengsulit2");
+                                    }
+                                    appManager.penduduk.setUsaha(us);
+                                    System.out.println("komeng4");
+                                    appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
+                                    System.out.println("Komenglas");
+                                    System.out.println(appManager.penduduk.getNama());
+                                    System.out.println(appManager.ruta.getNoUrutKeluarga());
+                                    System.out.println("komengsevetheday");
+                                } catch(Exception error) {
+                                    // System.out.println(error.getMessage());
+                                }
+                                appManager.changePenduduk();
+                                appManager.routing.showScreen(3);
+                            }
+                            else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) <= 0){
+                                JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 1!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) >= 100){
+                                JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 99!");
+                            }
+                        }
+                        else if(appManager.ui.statKedTextField.getText().length() != 2){
+                            JOptionPane.showMessageDialog(null, "Isi field Jumlah Usaha dengan 2 digit!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
                     }
-                    appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
-                    appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
-                    int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
-                    Kesulitan kes = new Kesulitan();
-                    kes.setKesulitan(temp+1);
-                    kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                    appManager.penduduk.setKesulitan(kes);
-                    int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
-                    appManager.penduduk.setPendidikanTertinggi(temp1+1);
-                    Pekerjaan pek = new Pekerjaan();                  
-                    int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
-                    pek.setStatusBekerja(temp2 + 1);
-                    pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
-                    pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                    appManager.penduduk.setPekerjaan(pek);
-                    System.out.println("Komeng3");
-                    Usaha us = new Usaha();
-                    int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                    System.out.println(temp3);
-                    us.setStatusKepemilikan(temp3+1);
-                    System.out.println("Komengkepala");
-                    us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                    System.out.println("komengsulit");
-                    us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                    System.out.println("komengsulit2");
-                    appManager.penduduk.setUsaha(us);
-                    System.out.println("komeng4");
-                    appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                    System.out.println("Komenglas");
-                    System.out.println(appManager.penduduk.getNama());
-                    System.out.println(appManager.ruta.getNoUrutKeluarga());
-                    System.out.println("komengsevetheday");
-                } catch(Exception error) {
-                    // System.out.println(error.getMessage());
+                } else {
+                    try{
+                        System.out.println("Komeng");
+                        appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
+                        System.out.println("Komeng1");
+                        appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
+                        appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
+                        if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
+                            appManager.penduduk.setJenisKelamin(1);
+                        } else {
+                            appManager.penduduk.setJenisKelamin(2);
+                        }
+                        appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
+                        appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
+                        int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
+                        Kesulitan kes = new Kesulitan();
+                        kes.setKesulitan(temp+1);
+                        if(temp != 3){
+                            kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
+                            System.out.println("komengsakit");
+                        }
+                        appManager.penduduk.setKesulitan(kes);
+                        int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
+                        appManager.penduduk.setPendidikanTertinggi(temp1+1);
+                        Pekerjaan pek = new Pekerjaan();                  
+                        int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
+                        pek.setStatusBekerja(temp2 + 1);
+                        if(temp2 == 0){
+                            pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
+                            pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
+                            System.out.println("komengaw");
+                        }
+                        appManager.penduduk.setPekerjaan(pek);
+                        System.out.println("Komeng3");
+                        Usaha us = new Usaha();
+                        int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
+                        System.out.println(temp3);
+                        us.setStatusKepemilikan(temp3+1);
+                        System.out.println("Komengkepala");
+                        if(temp3 == 0){
+                            us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
+                            System.out.println("komengsulit");
+                            us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
+                            System.out.println("komengsulit2");
+                        }
+                        appManager.penduduk.setUsaha(us);
+                        System.out.println("komeng4");
+                        appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
+                        System.out.println("Komenglas");
+                        System.out.println(appManager.penduduk.getNama());
+                        System.out.println(appManager.ruta.getNoUrutKeluarga());
+                        System.out.println("komengsevetheday");
+                    } catch(Exception error) {
+                        // System.out.println(error.getMessage());
+                    }
+                    appManager.changePenduduk();
+                    appManager.routing.showScreen(3);
                 }
-                appManager.changePenduduk();
-                appManager.routing.showScreen(3);
                 break;
             case "selesai":
-                try{
-                    System.out.println("Komeng");
-                    appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                    System.out.println("Komeng1");
-                    appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
-                    appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
-                    if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
-                        appManager.penduduk.setJenisKelamin(1);
-                    } else {
-                        appManager.penduduk.setJenisKelamin(2);
+                if(appManager.ui.statMilikDropdown.getSelectedIndex() == 0){
+                    if(!appManager.ui.jUsahaTextField.getText().equals("") && !appManager.ui.lUsahaTextField.getText().equals("")){
+                        if(appManager.ui.jUsahaTextField.getText().length() == 2){
+                            if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.jUsahaTextField.getText()) < 100){
+                                try{
+                                    System.out.println("Komeng");
+                                    appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
+                                    System.out.println("Komeng1");
+                                    appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
+                                    appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
+                                    if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
+                                        appManager.penduduk.setJenisKelamin(1);
+                                    } else {
+                                        appManager.penduduk.setJenisKelamin(2);
+                                    }
+                                    appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
+                                    appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
+                                    int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
+                                    Kesulitan kes = new Kesulitan();
+                                    kes.setKesulitan(temp+1);
+                                    if(temp != 3){
+                                        kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
+                                        System.out.println("komengsakit");
+                                    }
+                                    appManager.penduduk.setKesulitan(kes);
+                                    int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
+                                    appManager.penduduk.setPendidikanTertinggi(temp1+1);
+                                    Pekerjaan pek = new Pekerjaan();                  
+                                    int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
+                                    pek.setStatusBekerja(temp2 + 1);
+                                    if(temp2 == 0){
+                                        pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
+                                        pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
+                                        System.out.println("komengaw");
+                                    }
+                                    appManager.penduduk.setPekerjaan(pek);
+                                    System.out.println("Komeng3");
+                                    Usaha us = new Usaha();
+                                    int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
+                                    System.out.println(temp3);
+                                    us.setStatusKepemilikan(temp3+1);
+                                    System.out.println("Komengkepala");
+                                    if(temp3 == 0){
+                                        us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
+                                        System.out.println("komengsulit");
+                                        us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
+                                        System.out.println("komengsulit2");
+                                    }
+                                    appManager.penduduk.setUsaha(us);
+                                    System.out.println("komeng4");
+                                    appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
+                                    System.out.println("Komenglas");
+                                    System.out.println(appManager.penduduk.getNama());
+                                    System.out.println(appManager.ruta.getNoUrutKeluarga());
+                                    appManager.ruta.save();
+                                    System.out.println("komengsevetheday");
+                                } catch(Exception error) {
+                                    // System.out.println(error.getMessage());
+                                }
+                                Ruta ruta = new Ruta();
+                                appManager.setRuta(ruta);
+                                appManager.changePenduduk();
+                                appManager.ui.clearField();
+                                appManager.routing.showScreen(0);
+                            }
+                            else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) <= 0){
+                                JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 1!");
+                            }
+                            else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) >= 100){
+                                JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 99!");
+                            }
+                        }
+                        else if(appManager.ui.statKedTextField.getText().length() != 2){
+                            JOptionPane.showMessageDialog(null, "Isi field Jumlah Usaha dengan 2 digit!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
                     }
-                    appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
-                    appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
-                    int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
-                    Kesulitan kes = new Kesulitan();
-                    kes.setKesulitan(temp+1);
-                    kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                    appManager.penduduk.setKesulitan(kes);
-                    int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
-                    appManager.penduduk.setPendidikanTertinggi(temp1+1);
-                    Pekerjaan pek = new Pekerjaan();                  
-                    int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
-                    pek.setStatusBekerja(temp2 + 1);
-                    pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
-                    pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                    appManager.penduduk.setPekerjaan(pek);
-                    System.out.println("Komeng3");
-                    Usaha us = new Usaha();
-                    int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                    System.out.println(temp3);
-                    us.setStatusKepemilikan(temp3+1);
-                    System.out.println("Komengkepala");
-                    us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                    System.out.println("komengsulit");
-                    us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                    System.out.println("komengsulit2");
-                    appManager.penduduk.setUsaha(us);
-                    System.out.println("komeng4");
-                    appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                    System.out.println("Komenglas");
-                    System.out.println(appManager.penduduk.getNama());
-                    System.out.println(appManager.ruta.getNoUrutKeluarga());
-                    appManager.ruta.save();
-                    System.out.println("komengsevetheday");
-                } catch(Exception error) {
-                    // System.out.println(error.getMessage());
+                } else {
+                    try{
+                        System.out.println("Komeng");
+                        appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
+                        System.out.println("Komeng1");
+                        appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
+                        appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
+                        if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
+                            appManager.penduduk.setJenisKelamin(1);
+                        } else {
+                            appManager.penduduk.setJenisKelamin(2);
+                        }
+                        appManager.penduduk.setUsia(appManager.ui.umurTextField.getText());
+                        appManager.penduduk.setStatusKepala(Integer.parseInt(appManager.ui.statusHubKepalaTextField.getText()));
+                        int temp =  appManager.ui.gKesulitanDropdown.getSelectedIndex();
+                        Kesulitan kes = new Kesulitan();
+                        kes.setKesulitan(temp+1);
+                        if(temp != 3){
+                            kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
+                            System.out.println("komengsakit");
+                        }
+                        appManager.penduduk.setKesulitan(kes);
+                        int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
+                        appManager.penduduk.setPendidikanTertinggi(temp1+1);
+                        Pekerjaan pek = new Pekerjaan();                  
+                        int temp2 = appManager.ui.statKerjaDropdown.getSelectedIndex();
+                        pek.setStatusBekerja(temp2 + 1);
+                        if(temp2 == 0){
+                            pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
+                            pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
+                            System.out.println("komengaw");
+                        }
+                        appManager.penduduk.setPekerjaan(pek);
+                        System.out.println("Komeng3");
+                        Usaha us = new Usaha();
+                        int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
+                        System.out.println(temp3);
+                        us.setStatusKepemilikan(temp3+1);
+                        System.out.println("Komengkepala");
+                        if(temp3 == 0){
+                            us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
+                            System.out.println("komengsulit");
+                            us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
+                            System.out.println("komengsulit2");
+                        }
+                        appManager.penduduk.setUsaha(us);
+                        System.out.println("komeng4");
+                        appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
+                        System.out.println("Komenglas");
+                        System.out.println(appManager.penduduk.getNama());
+                        System.out.println(appManager.ruta.getNoUrutKeluarga());
+                        appManager.ruta.save();
+                        System.out.println("komengsevetheday");
+                    } catch(Exception error) {
+                        // System.out.println(error.getMessage());
+                    }
+                    Ruta ruta = new Ruta();
+                    appManager.setRuta(ruta);
+                    appManager.changePenduduk();
+                    appManager.ui.clearField();
+                    appManager.routing.showScreen(0);
                 }
-                Ruta ruta = new Ruta();
-                appManager.setRuta(ruta);
-                appManager.changePenduduk();
-                appManager.ui.clearField();
-                appManager.routing.showScreen(0);
                 break;
         }
     }

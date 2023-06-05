@@ -143,13 +143,26 @@ public class UI {
         appManager.ui.kabKotTextField.setText(null);
         appManager.ui.kecamatanTextField.setText(null);
         appManager.ui.desaKelTextField.setText(null);
-        appManager.ui.noUrutTextField.setText(null);
-        appManager.ui.nikTextField.setText(null);
-        appManager.ui.nikTextField.setText(null);       
-        appManager.ui.umurTextField.setText(null);
+        appManager.ui.slsTextField.setText(null);
+        appManager.ui.subSlsTextField.setText(null);
+        appManager.ui.namaSlsTextField.setText(null);
+        appManager.ui.lokasiPendataanTextField.setText(null);
+        appManager.ui.kelKeluargaTextField.setText(null);
+        appManager.ui.namaKepalaKeluargaTextField.setText(null);
         appManager.ui.urutBangunanTextField.setText(null);
         appManager.ui.urutKelTextField.setText(null);
         appManager.ui.landmarkTextField.setText(null);
+        appManager.ui.noUrutTextField.setText(null);
+        appManager.ui.namaTextField.setText(null);
+        appManager.ui.nikTextField.setText(null);
+        appManager.ui.nikTextField.setText(null);       
+        appManager.ui.umurTextField.setText(null);
+        appManager.ui.statusHubKepalaTextField.setText(null);
+        appManager.ui.jGangguanTextField.setText(null);
+        appManager.ui.jLapanganTextField.setText(null);
+        appManager.ui.statKedTextField.setText(null);
+        appManager.ui.jUsahaTextField.setText(null);
+        appManager.ui.lUsahaTextField.setText(null);
     }
 
     public JComboBox<String> createDropdown(int bgNum, int x, int y, int width, int height, int size, String[] isi){
@@ -263,9 +276,9 @@ public class UI {
     
     public void inputField4(){
         createBackgroundFull(3, "bg.png");
-        noUrutTextField = createTextField(3, 600, 153, 130, 40, 40, 4);
-        namaTextField = createTextField(3, 600, 253, 520, 40, 40, 14);
-        nikTextField = createTextField(3, 600, 353, 520, 40, 40, 14);
+        noUrutTextField = createTextField(3, 600, 153, 130, 40, 30, 4);
+        namaTextField = createTextField(3, 600, 253, 520, 40, 30, 14);
+        nikTextField = createTextField(3, 600, 353, 520, 40, 30, 14);
         jenisKelaminDropdown = createDropdown(3, 600, 453, 250, 40, 30, new String[]{"1. Laki-laki", "2. Perempuan"});
         umurTextField = createTextField(3, 600, 553, 100, 40, 30, 3);
         noUrutLabel = createLabel(3, 260, 153, 500, 40, "No Urut", 30);
@@ -363,7 +376,7 @@ public class UI {
         createBackgroundFull(6, "bg.png");
         statMilikDropdown = createDropdown(6, 600, 203, 500, 40, 30, new String[]{"1. Ya","2. Tidak"});
         jUsahaTextField = createTextField(6, 600, 303, 100, 40, 30, 3);
-        lUsahaTextField = createTextField(6, 600, 403, 100, 40, 30, 3);
+        lUsahaTextField = createTextField(6, 600, 403, 520, 40, 30, 14);
         
         statMilikLabel = createLabel(6, 200, 203, 500, 40, "Status Kepemilikan Usaha", 30);
         jUsahaLabel = createLabel(6, 200, 303, 500, 40, "Jumlah Usaha yang Dimiliki", 30);
