@@ -100,7 +100,7 @@ public class UI {
         inputField5();
         inputField6();
         inputField7();
-        fieldTabel();
+        // fieldTabel();
     }
 
     public JLabel createLabel(int bgNum, int x, int y, int width, int height, String text, int size){
@@ -415,33 +415,33 @@ public class UI {
         bgPanel[6].setVisible(false);
     }
 
-    public void fieldTabel(){
-        createBackgroundFull(7, "bg.png");
+    // public void fieldTabel(){
+    //     createBackgroundFull(7, "bg.png");
 
         
-        Object[][] data = null;
-        data = new Object[3][3];
-        // try {
-            //     List<String[]> dataList = Penduduk.getAll(0);
-            //     data = new Object[dataList.size()][3];
-            //     int i = 0;
-            //     for (String[] row : dataList) {
-                //         data[i] = (Object[]) row;
-                //     }
-                // } catch (SQLException e) {
-                    //     JOptionPane.showMessageDialog(null, "Ambil Data Gagal! SQL Error!");
-                    // }
+    //     Object[][] data = null;
+    //     data = new Object[3][3];
+    //     // try {
+    //         //     List<String[]> dataList = Penduduk.getAll(0);
+    //         //     data = new Object[dataList.size()][3];
+    //         //     int i = 0;
+    //         //     for (String[] row : dataList) {
+    //             //         data[i] = (Object[]) row;
+    //             //     }
+    //             // } catch (SQLException e) {
+    //                 //     JOptionPane.showMessageDialog(null, "Ambil Data Gagal! SQL Error!");
+    //                 // }
 
-        JTable jt = new JTable(data, new String[] { "Ruta ID", "Nama", "No Urut"});
-        jt.setEnabled(false);
-        JScrollPane js = new JScrollPane(jt);
-        js.setBounds(150, 160, 1920 * 3 / 4 - 300, 420);
+    //     JTable jt = new JTable(data, new String[] { "Ruta ID", "Nama", "No Urut"});
+    //     jt.setEnabled(false);
+    //     JScrollPane js = new JScrollPane(jt);
+    //     js.setBounds(150, 160, 1920 * 3 / 4 - 300, 420);
         
-        bgPanel[7].add(js);
+    //     bgPanel[7].add(js);
 
-        button(7, 650, 600, 200, 50, "Home", "Home");
+    //     button(7, 650, 600, 200, 50, "Home", "Home");
 
-        bgPanel[7].add(bgLabel[7]);
-        bgPanel[7].setVisible(false);
-    }
+    //     bgPanel[7].add(bgLabel[7]);
+    //     bgPanel[7].setVisible(false);
+    // }
 }

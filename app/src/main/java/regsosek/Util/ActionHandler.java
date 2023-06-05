@@ -131,7 +131,6 @@ public class ActionHandler implements ActionListener{
                             appManager.ruta.setNoUrutBangunan(appManager.ui.urutBangunanTextField.getText());
                             appManager.ruta.setNoUrutKeluarga(appManager.ui.urutKelTextField.getText());
                             appManager.ruta.setIdLandmark(appManager.ui.landmarkTextField.getText());
-                            System.out.println("oh yes");
                         }
                         else if(Integer.parseInt(appManager.ui.urutBangunanTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.urutKelTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.landmarkTextField.getText()) <= 0){
                             JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
@@ -266,9 +265,7 @@ public class ActionHandler implements ActionListener{
                             if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.jUsahaTextField.getText()) < 100){
                                 // appManager.routing.showScreen(6);
                                 try{
-                                    System.out.println("Komeng");
                                     appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                                    System.out.println("Komeng1");
                                     appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
                                     appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
                                     if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
@@ -283,7 +280,6 @@ public class ActionHandler implements ActionListener{
                                     kes.setKesulitan(temp+1);
                                     if(temp != 3){
                                         kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                                        System.out.println("komengsakit");
                                     }
                                     appManager.penduduk.setKesulitan(kes);
                                     int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
@@ -294,28 +290,24 @@ public class ActionHandler implements ActionListener{
                                     if(temp2 == 0){
                                         pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
                                         pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                                        System.out.println("komengaw");
                                     }
                                     appManager.penduduk.setPekerjaan(pek);
-                                    System.out.println("Komeng3");
+                                    
                                     Usaha us = new Usaha();
                                     int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                                    System.out.println(temp3);
+                                    
                                     us.setStatusKepemilikan(temp3+1);
-                                    System.out.println("Komengkepala");
+                                    
                                     if(temp3 == 0){
                                         us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                                        System.out.println("komengsulit");
+                                        
                                         us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                                        System.out.println("komengsulit2");
+                                        
                                     }
                                     appManager.penduduk.setUsaha(us);
-                                    System.out.println("komeng4");
+                                    
                                     appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                                    System.out.println("Komenglas");
-                                    System.out.println(appManager.penduduk.getNama());
-                                    System.out.println(appManager.ruta.getNoUrutKeluarga());
-                                    System.out.println("komengsevetheday");
+                                    
                                 } catch(Exception error) {
                                     // System.out.println(error.getMessage());
                                 }
@@ -337,9 +329,9 @@ public class ActionHandler implements ActionListener{
                     }
                 } else {
                     try{
-                        System.out.println("Komeng");
+                        
                         appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                        System.out.println("Komeng1");
+                        
                         appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
                         appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
                         if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
@@ -354,7 +346,7 @@ public class ActionHandler implements ActionListener{
                         kes.setKesulitan(temp+1);
                         if(temp != 3){
                             kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                            System.out.println("komengsakit");
+                            
                         }
                         appManager.penduduk.setKesulitan(kes);
                         int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
@@ -365,28 +357,25 @@ public class ActionHandler implements ActionListener{
                         if(temp2 == 0){
                             pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
                             pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                            System.out.println("komengaw");
+                            
                         }
                         appManager.penduduk.setPekerjaan(pek);
-                        System.out.println("Komeng3");
+                        
                         Usaha us = new Usaha();
                         int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                        System.out.println(temp3);
+                        
                         us.setStatusKepemilikan(temp3+1);
-                        System.out.println("Komengkepala");
+                        
                         if(temp3 == 0){
                             us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                            System.out.println("komengsulit");
+                            
                             us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                            System.out.println("komengsulit2");
+                            
                         }
                         appManager.penduduk.setUsaha(us);
-                        System.out.println("komeng4");
+                        
                         appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                        System.out.println("Komenglas");
-                        System.out.println(appManager.penduduk.getNama());
-                        System.out.println(appManager.ruta.getNoUrutKeluarga());
-                        System.out.println("komengsevetheday");
+                        
                     } catch(Exception error) {
                         // System.out.println(error.getMessage());
                     }
@@ -400,9 +389,9 @@ public class ActionHandler implements ActionListener{
                         if(appManager.ui.jUsahaTextField.getText().length() == 2){
                             if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) > 0 && Integer.parseInt(appManager.ui.jUsahaTextField.getText()) < 100){
                                 try{
-                                    System.out.println("Komeng");
+                                    
                                     appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                                    System.out.println("Komeng1");
+                                    
                                     appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
                                     appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
                                     if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
@@ -417,7 +406,7 @@ public class ActionHandler implements ActionListener{
                                     kes.setKesulitan(temp+1);
                                     if(temp != 3){
                                         kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                                        System.out.println("komengsakit");
+                                        
                                     }
                                     appManager.penduduk.setKesulitan(kes);
                                     int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
@@ -428,29 +417,25 @@ public class ActionHandler implements ActionListener{
                                     if(temp2 == 0){
                                         pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
                                         pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                                        System.out.println("komengaw");
+                                        
                                     }
                                     appManager.penduduk.setPekerjaan(pek);
-                                    System.out.println("Komeng3");
+                                    
                                     Usaha us = new Usaha();
                                     int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                                    System.out.println(temp3);
+                                    
                                     us.setStatusKepemilikan(temp3+1);
-                                    System.out.println("Komengkepala");
+                                    
                                     if(temp3 == 0){
                                         us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                                        System.out.println("komengsulit");
+                                        
                                         us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                                        System.out.println("komengsulit2");
+                                        
                                     }
                                     appManager.penduduk.setUsaha(us);
-                                    System.out.println("komeng4");
+                                    
                                     appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                                    System.out.println("Komenglas");
-                                    System.out.println(appManager.penduduk.getNama());
-                                    System.out.println(appManager.ruta.getNoUrutKeluarga());
                                     appManager.ruta.save();
-                                    System.out.println("komengsevetheday");
                                 } catch(Exception error) {
                                     // System.out.println(error.getMessage());
                                 }
@@ -458,7 +443,7 @@ public class ActionHandler implements ActionListener{
                                 appManager.setRuta(ruta);
                                 appManager.changePenduduk();
                                 appManager.ui.clearField();
-                                appManager.routing.showScreen(7);
+                                appManager.routing.showScreen(0);
                             }
                             else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) <= 0){
                                 JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 1!");
@@ -475,9 +460,9 @@ public class ActionHandler implements ActionListener{
                     }
                 } else {
                     try{
-                        System.out.println("Komeng");
+                        
                         appManager.penduduk.setNoUrut(appManager.ui.noUrutTextField.getText());
-                        System.out.println("Komeng1");
+                        
                         appManager.penduduk.setNama(appManager.ui.namaTextField.getText());
                         appManager.penduduk.setNIK(appManager.ui.nikTextField.getText());
                         if(appManager.ui.jenisKelaminDropdown.getSelectedItem().equals("1. Laki-laki")){
@@ -492,7 +477,7 @@ public class ActionHandler implements ActionListener{
                         kes.setKesulitan(temp+1);
                         if(temp != 3){
                             kes.setJenisKesulitan(appManager.ui.jGangguanTextField.getText());
-                            System.out.println("komengsakit");
+                            
                         }
                         appManager.penduduk.setKesulitan(kes);
                         int temp1 = appManager.ui.ijazahDropdown.getSelectedIndex();
@@ -503,29 +488,27 @@ public class ActionHandler implements ActionListener{
                         if(temp2 == 0){
                             pek.setLapanganUsaha(appManager.ui.jLapanganTextField.getText());
                             pek.setStatusKependudukan(Integer.parseInt(appManager.ui.statKedTextField.getText()));
-                            System.out.println("komengaw");
+                            
                         }
                         appManager.penduduk.setPekerjaan(pek);
-                        System.out.println("Komeng3");
+                        
                         Usaha us = new Usaha();
                         int temp3 = appManager.ui.statMilikDropdown.getSelectedIndex();
-                        System.out.println(temp3);
+                        
                         us.setStatusKepemilikan(temp3+1);
-                        System.out.println("Komengkepala");
+                        
                         if(temp3 == 0){
                             us.setJumlahUsaha(appManager.ui.jUsahaTextField.getText());
-                            System.out.println("komengsulit");
+                            
                             us.setLapanganUsaha(appManager.ui.lUsahaTextField.getText());
-                            System.out.println("komengsulit2");
+                            
                         }
                         appManager.penduduk.setUsaha(us);
-                        System.out.println("komeng4");
+                        
                         appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
-                        System.out.println("Komenglas");
-                        System.out.println(appManager.penduduk.getNama());
-                        System.out.println(appManager.ruta.getNoUrutKeluarga());
+                        
                         appManager.ruta.save();
-                        System.out.println("komengsevetheday");
+                        
                     } catch(Exception error) {
                         // System.out.println(error.getMessage());
                     }
@@ -533,7 +516,7 @@ public class ActionHandler implements ActionListener{
                     appManager.setRuta(ruta);
                     appManager.changePenduduk();
                     appManager.ui.clearField();
-                    appManager.routing.showScreen(7);
+                    appManager.routing.showScreen(0);
                 }
                 break;
         }
