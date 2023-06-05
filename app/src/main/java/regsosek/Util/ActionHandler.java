@@ -41,7 +41,7 @@ public class ActionHandler implements ActionListener{
             case "kembali-page-6":
                 appManager.routing.showScreen(5);
                 break;
-            case "page-1":
+            case "Home":
                 appManager.routing.showScreen(0);
                 break;
             case "page-2":
@@ -458,7 +458,7 @@ public class ActionHandler implements ActionListener{
                                 appManager.setRuta(ruta);
                                 appManager.changePenduduk();
                                 appManager.ui.clearField();
-                                appManager.routing.showScreen(0);
+                                appManager.routing.showScreen(7);
                             }
                             else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) <= 0){
                                 JOptionPane.showMessageDialog(null, "Minimal jumlah usaha adalah 1!");
@@ -533,7 +533,7 @@ public class ActionHandler implements ActionListener{
                     appManager.setRuta(ruta);
                     appManager.changePenduduk();
                     appManager.ui.clearField();
-                    appManager.routing.showScreen(0);
+                    appManager.routing.showScreen(7);
                 }
                 break;
         }
