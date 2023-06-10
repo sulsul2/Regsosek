@@ -20,7 +20,7 @@ public class AppManager {
     Penduduk penduduk = new Penduduk();       
 
     public AppManager(){
-        routing.showScreen(0);
+        routing.showScreen(7);
     }
 
     public void setRuta(Ruta ruta){

@@ -26,6 +26,18 @@ public class ActionHandler implements ActionListener{
         String command = e.getActionCommand();
 
         switch (command){
+            case "Login":
+                appManager.routing.showScreen(0);
+                break;
+            case "to-Login":
+                appManager.routing.showScreen(7);
+                break;
+            case "to-Register":
+                appManager.routing.showScreen(8);
+                break;
+            case "Register":
+                appManager.routing.showScreen(0);
+                break;
             case "kembali-page-1":
                 appManager.routing.showScreen(0);
                 break;
