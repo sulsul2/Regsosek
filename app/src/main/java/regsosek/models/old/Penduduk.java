@@ -11,6 +11,7 @@ import java.util.List;
 public class Penduduk implements Model {
     private int id;
     private int rutaId;
+    private int userId;
     private String noUrut;
     private String NIK;
     private String nama;
@@ -32,8 +33,8 @@ public class Penduduk implements Model {
         return "INSERT INTO penduduk (ruta_id, no_urut, nik, nama,"
                 + "jenis_kelamin, status_kepala,"
                 + "usia, kesulitan, jenis_kesulitan, pendidikan, status_kerja,"
-                + "lapangan_usaha, status_kedudukan, kepemilikan, jumlah_usaha, usaha_utama, id)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "lapangan_usaha, status_kedudukan, kepemilikan, jumlah_usaha, usaha_utama, user_id, id)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
@@ -69,7 +70,8 @@ public class Penduduk implements Model {
             pstmt.setInt(15, 0);
             pstmt.setNull(16, Types.VARCHAR);
         }
-        pstmt.setInt(17,0);
+        pstmt.setInt(17,userId);
+        pstmt.setInt(18,0);
     }
 
     @Override
@@ -124,6 +126,10 @@ public class Penduduk implements Model {
      */
     public int getRutaId() {
         return rutaId;
+    }
+
+    public int getUserId(){
+        return userId;
     }
 
     /**
@@ -350,6 +356,10 @@ public class Penduduk implements Model {
      */
     public void setRutaId(int rutaId) {
         this.rutaId = rutaId;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
     }
 
 }

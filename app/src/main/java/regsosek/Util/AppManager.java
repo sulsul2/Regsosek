@@ -17,7 +17,7 @@ public class AppManager {
     UI ui = new UI(this);
     Routing routing = new Routing(this);
     Ruta ruta = new Ruta();
-    Penduduk penduduk = new Penduduk();       
+    Penduduk penduduk = new Penduduk();        
 
     public AppManager(){
         routing.showScreen(0);

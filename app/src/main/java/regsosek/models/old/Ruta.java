@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Ruta implements Model {
     private int id;
-    private static int indeks = 1;
+    private User user;
     private Lokasi lokasi;
     private String kelompokKeluarga;
     private String kepalaKeluarga;
@@ -57,9 +57,11 @@ public class Ruta implements Model {
     @Override
     public void save() throws SQLException {
         this.id = Database.getInstance().save(this);
+        // this.userid = Database.getInstance().register(this.user)
         System.out.println(this.id);
         for (Penduduk art : anggotaRumahTangga) {
             art.setRutaId(this.id);
+            art.setUserId(user.getId());
             art.save();
         }
     }
@@ -108,8 +110,16 @@ public class Ruta implements Model {
     /**
      * @return the id
      */
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
     }
 
     /**
@@ -229,5 +239,6 @@ public class Ruta implements Model {
     public void addAnggotaRumahTangga(Penduduk penduduk){
         anggotaRumahTangga.add(penduduk);
     }
+
 
 }
