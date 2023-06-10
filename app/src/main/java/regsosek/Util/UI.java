@@ -49,8 +49,8 @@ public class UI {
     public JPanel bgPanel[] = new JPanel[10];
     public JLabel bgLabel[] = new JLabel[10];
     public JComboBox<String> jenisKelaminDropdown, gKesulitanDropdown, ijazahDropdown, statKerjaDropdown, statMilikDropdown;
-    public JLabel provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
-    public JTextField provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluargaTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
+    public JLabel loginTitle, usernameLabel, passwordLabel, provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
+    public JTextField usernameTextField, passwordTextField, provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluargaTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
 
 
     public UI(AppManager appManager){
@@ -93,6 +93,8 @@ public class UI {
 
     public void generateScreen() {
         // Start
+        fieldLogin();
+        fieldRegister();
         inputField1();
         inputField2();
         inputField3();
@@ -223,6 +225,62 @@ public class UI {
         bgPanel[bgNum].add(btn, 0);
     }
 
+    public void fieldLogin(){
+        createBackgroundFull(7, "bg.png");
+        loginTitle = createLabel(7, 600, 200, 500, 50, "LOGIN", 60);
+        usernameLabel = createLabel(7, 260, 353, 500, 40, "Username", 30);
+        passwordLabel = createLabel(7, 260, 453, 500, 40, "Password", 30);
+        usernameTextField = createTextField(7, 600, 353, 500, 40, 30, 14);
+        passwordTextField = createTextField(7, 600, 453, 500, 40, 30, 14);
+        button(7, 1000, 600, 200, 50, "Login", "Login");
+        JButton btn = new JButton("Belum punya akun?") {
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(null);
+                g2.setPaint(getBackground()); 
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+
+        btn.setBounds(220, 503, 250, 40);
+        btn.setText("Belum punya akun?");
+        btn.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        btn.setForeground(Color.BLACK);
+        btn.setBackground(null);
+        btn.setFocusPainted(false);
+        btn.addActionListener(appManager.actionHandler);
+        btn.setActionCommand("to-Register");
+        btn.setBorderPainted(false);
+        btn.setOpaque(false);
+        btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn.setForeground(Color.GRAY);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn.setForeground(Color.BLACK);
+            }
+        });
+        bgPanel[7].add(btn, 0);
+        
+        bgPanel[7].add(bgLabel[7]);
+        bgPanel[7].setVisible(false);
+    }
+    
+    public void fieldRegister(){
+        createBackgroundFull(8, "bg.png");
+        loginTitle = createLabel(8, 600, 200, 500, 50, "REGISTER", 60);
+        usernameLabel = createLabel(8, 260, 353, 500, 40, "Username", 30);
+        passwordLabel = createLabel(8, 260, 453, 500, 40, "Password", 30);
+        usernameTextField = createTextField(8, 600, 353, 500, 40, 30, 14);
+        passwordTextField = createTextField(8, 600, 453, 500, 40, 30, 14);
+        button(8, 1000, 600, 200, 50, "Register", "Register");
+        button(8, 200, 600, 200, 50, "< Log In", "to-Login");
+        bgPanel[8].add(bgLabel[8]);
+        bgPanel[8].setVisible(false);
+    }
     public void inputField1(){
         
         createBackgroundFull(0, "bg.png");
