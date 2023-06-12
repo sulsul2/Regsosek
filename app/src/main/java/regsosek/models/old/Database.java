@@ -88,6 +88,7 @@ public class Database implements Serializable {
                         }
                     }else {
                         JOptionPane.showMessageDialog(null, "Username sudah digunakan!");
+                        id = -1;
                     }
                 }catch(SQLException e){
                     System.out.println(e);

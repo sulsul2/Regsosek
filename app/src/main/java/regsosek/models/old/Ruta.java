@@ -58,11 +58,14 @@ public class Ruta implements Model {
     public void save() throws SQLException {
         this.id = Database.getInstance().save(this);
         // this.userid = Database.getInstance().register(this.user)
-        System.out.println(this.id);
+        // System.out.println(this.id);
         for (Penduduk art : anggotaRumahTangga) {
             art.setRutaId(this.id);
+            System.out.println("komengroota");
             art.setUserId(user.getId());
+            System.out.println("komengid");
             art.save();
+            System.out.println("komengsef");
         }
     }
 

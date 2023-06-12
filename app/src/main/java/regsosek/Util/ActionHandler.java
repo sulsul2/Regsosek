@@ -41,11 +41,14 @@ public class ActionHandler implements ActionListener{
                     appManager.user.setUsername(appManager.ui.usernameTextField.getText());
                     try{
                         appManager.user.register();
-                        appManager.ruta.setUser(appManager.user);
+                        if(appManager.user.getId() == -1){
+                            appManager.routing.showScreen(8);
+                        }else{
+                        appManager.routing.showScreen(0);
+                        }
                     } catch (SQLException error){
                         System.out.println(error);
                     }
-                    appManager.routing.showScreen(0);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
@@ -74,6 +77,7 @@ public class ActionHandler implements ActionListener{
                     if(appManager.ui.provinsiTextField.getText().length() == 2 && appManager.ui.kabKotTextField.getText().length() == 2 && appManager.ui.kecamatanTextField.getText().length() == 3 && appManager.ui.desaKelTextField.getText().length() == 3){
                         if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) > 0 && Integer.parseInt(appManager.ui.provinsiTextField.getText()) < 100 && Integer.parseInt(appManager.ui.kabKotTextField.getText()) > 0 && Integer.parseInt(appManager.ui.kabKotTextField.getText()) < 100 && Integer.parseInt(appManager.ui.kecamatanTextField.getText()) > 0 && Integer.parseInt(appManager.ui.kecamatanTextField.getText()) < 1000 && Integer.parseInt(appManager.ui.desaKelTextField.getText()) > 0 && Integer.parseInt(appManager.ui.desaKelTextField.getText()) < 1000){
                             appManager.routing.showScreen(1);
+                            appManager.ruta.setUser(appManager.user);
                         }
                         else if(Integer.parseInt(appManager.ui.provinsiTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.kabKotTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.kecamatanTextField.getText()) <= 0 || Integer.parseInt(appManager.ui.desaKelTextField.getText()) <= 0){
                             JOptionPane.showMessageDialog(null, "Kode harus lebih besar dari 0!");
@@ -531,8 +535,11 @@ public class ActionHandler implements ActionListener{
                         appManager.penduduk.setUsaha(us);
                         
                         appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
+                        System.out.println("komengsev");
+                        System.out.println(appManager.user.getId());
                         
                         appManager.ruta.save();
+
                         
                     } catch(Exception error) {
                         // System.out.println(error.getMessage());
