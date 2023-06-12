@@ -12,6 +12,7 @@ import regsosek.models.old.Pekerjaan;
 import regsosek.models.old.Penduduk;
 import regsosek.models.old.Ruta;
 import regsosek.models.old.Usaha;
+import regsosek.models.old.User;
 
 public class ActionHandler implements ActionListener{
     AppManager appManager;
@@ -27,7 +28,21 @@ public class ActionHandler implements ActionListener{
 
         switch (command){
             case "Login":
-                appManager.routing.showScreen(0);
+                if(!appManager.ui.usernameTextField.getText().equals("") && !appManager.ui.passwordTextField.getText().equals("")){
+                    try {
+                        appManager.user.login(appManager.ui.usernameTextField.getText(), appManager.ui.passwordTextField.getText());
+                        if(appManager.user == null){
+                            appManager.routing.showScreen(7);
+                        }
+                        else{
+                            appManager.routing.showScreen(0);
+                        }
+                    } catch (SQLException e1) {
+                        System.out.println(e1);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!"); 
+                }
                 break;
             case "to-Login":
                 appManager.routing.showScreen(7);
