@@ -87,7 +87,7 @@ public class Database implements Serializable {
                             System.out.println(e);
                         }
                     }else {
-                        JOptionPane.showMessageDialog(null, "Email sudah digunakan!");
+                        JOptionPane.showMessageDialog(null, "Username sudah digunakan!");
                     }
                 }catch(SQLException e){
                     System.out.println(e);

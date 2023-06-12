@@ -36,7 +36,20 @@ public class ActionHandler implements ActionListener{
                 appManager.routing.showScreen(8);
                 break;
             case "Register":
-                appManager.routing.showScreen(0);
+                if(!appManager.ui.usernameTextField.getText().equals("") && !appManager.ui.passwordTextField.getText().equals("")){
+                    appManager.user.setPass(appManager.ui.passwordTextField.getText());
+                    appManager.user.setUsername(appManager.ui.usernameTextField.getText());
+                    try{
+                        appManager.user.register();
+                        appManager.ruta.setUser(appManager.user);
+                    } catch (SQLException error){
+                        System.out.println(error);
+                    }
+                    appManager.routing.showScreen(0);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong!");
+                }
                 break;
             case "kembali-page-1":
                 appManager.routing.showScreen(0);

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import regsosek.models.old.Ruta;
+import regsosek.models.old.User;
 import regsosek.models.old.Penduduk;
 
 public class AppManager {
@@ -17,7 +18,8 @@ public class AppManager {
     UI ui = new UI(this);
     Routing routing = new Routing(this);
     Ruta ruta = new Ruta();
-    Penduduk penduduk = new Penduduk();        
+    Penduduk penduduk = new Penduduk(); 
+    User user = new User();       
 
     public AppManager(){
         routing.showScreen(7);
@@ -34,5 +36,14 @@ public class AppManager {
     public void changePenduduk(){
         Penduduk temp = new Penduduk();
         setPenduduk(temp);
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public void changeUser(){
+        User temp = new User();
+        setUser(temp);
     }
 }
