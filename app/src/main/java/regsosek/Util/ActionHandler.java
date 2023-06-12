@@ -28,9 +28,9 @@ public class ActionHandler implements ActionListener{
 
         switch (command){
             case "Login":
-                if(!appManager.ui.usernameTextField.getText().equals("") && !appManager.ui.passwordTextField.getText().equals("")){
+                if(!appManager.ui.usernameLogTextField.getText().equals("") && !appManager.ui.passwordLogTextField.getText().equals("")){
                     try {
-                        appManager.user.login(appManager.ui.usernameTextField.getText(), appManager.ui.passwordTextField.getText());
+                        appManager.user.login(appManager.ui.usernameLogTextField.getText(), appManager.ui.passwordLogTextField.getText());
                         if(appManager.user == null){
                             appManager.routing.showScreen(7);
                         }

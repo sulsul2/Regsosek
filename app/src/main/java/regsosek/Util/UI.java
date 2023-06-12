@@ -50,7 +50,7 @@ public class UI {
     public JLabel bgLabel[] = new JLabel[10];
     public JComboBox<String> jenisKelaminDropdown, gKesulitanDropdown, ijazahDropdown, statKerjaDropdown, statMilikDropdown;
     public JLabel loginTitle, usernameLabel, passwordLabel, provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
-    public JTextField usernameTextField, passwordTextField, provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluargaTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
+    public JTextField usernameTextField, usernameLogTextField, passwordTextField, passwordLogTextField, provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluargaTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
 
 
     public UI(AppManager appManager){
@@ -230,8 +230,8 @@ public class UI {
         loginTitle = createLabel(7, 600, 200, 500, 50, "LOGIN", 60);
         usernameLabel = createLabel(7, 260, 353, 500, 40, "Username", 30);
         passwordLabel = createLabel(7, 260, 453, 500, 40, "Password", 30);
-        usernameTextField = createTextField(7, 600, 353, 500, 40, 30, 14);
-        passwordTextField = createTextField(7, 600, 453, 500, 40, 30, 14);
+        usernameLogTextField = createTextField(7, 600, 353, 500, 40, 30, 14);
+        passwordLogTextField = createTextField(7, 600, 453, 500, 40, 30, 14);
         button(7, 1000, 600, 200, 50, "Login", "Login");
         JButton btn = new JButton("Belum punya akun?") {
             protected void paintComponent(Graphics g) {
