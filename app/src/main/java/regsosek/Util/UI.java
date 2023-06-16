@@ -39,6 +39,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import regsosek.models.old.Database;
 import regsosek.models.old.Penduduk;
 
 import javax.swing.JTextField;
@@ -49,7 +50,7 @@ public class UI {
     public JPanel bgPanel[] = new JPanel[10];
     public JLabel bgLabel[] = new JLabel[10];
     public JComboBox<String> jenisKelaminDropdown, gKesulitanDropdown, ijazahDropdown, statKerjaDropdown, statMilikDropdown;
-    public JLabel loginTitle, usernameLabel, passwordLabel, provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
+    public JLabel operatorLabel, adminLabel, loginTitle, usernameLabel, passwordLabel, provinsiLabel, kabKotLabel, kecamatanLabel, desaKelLabel, noUrutLabel, nikLabel, umurLabel, jenisKelaminLabel, kelKeluargaLabel, urutBangunanLabel, urutKelLabel, landmarkLabel, gKesulitanLabel, jGangguanLabel, ijazahLabel, statKerjaLabel, addKerjaLabel, jLapanganLabel, jLapangAddLabel, statKedLabel,statKedAddLabel, statMilikLabel, jUsahaLabel, lUsahaLabel, lUsahaAddLabel, slsLabel, subSlsLabel, namaSlsLabel, lokasiPendataanLabel, namaKepalaKeluargLabel, namaLabel, statusHubKepalaLabel;
     public JTextField usernameTextField, passwordTextField, provinsiTextField, kabKotTextField, kecamatanTextField, jGangguanTextField,desaKelTextField, kelKeluargaTextField, noUrutTextField, nikTextField, umurTextField, urutBangunanTextField, urutKelTextField, landmarkTextField, slsTextField, subSlsTextField, namaSlsTextField, lokasiPendataanTextField, namaKepalaKeluargaTextField, namaTextField, statusHubKepalaTextField, jLapanganTextField, statKedTextField, jUsahaTextField, lUsahaTextField;
 
 
@@ -102,6 +103,7 @@ public class UI {
         inputField5();
         inputField6();
         inputField7();
+        screenTabel();
         // fieldTabel();
     }
 
@@ -471,6 +473,53 @@ public class UI {
 
         bgPanel[6].add(bgLabel[6]);
         bgPanel[6].setVisible(false);
+    }
+
+    public void screenTabel(){
+        createBackgroundFull(9, "bg.png");
+
+        adminLabel = createLabel(9, 200, 203, 320, 42, "Admin Regsosek", 30);
+        operatorLabel = createLabel(9, 200, 303, 330, 40, "Data Pengisi", 30);
+        // JLabel labelBg = new JLabel();
+        // labelBg.setBounds(120, 16, 350, 48);
+        // ImageIcon bgIcon = new ImageIcon(
+        //         new ImageIcon(getClass().getClassLoader().getResource("bg-label.png")).getImage()
+        //                 .getScaledInstance(350, 48, Image.SCALE_SMOOTH));
+        // labelBg.setIcon(bgIcon);
+
+        Object[][] data = null;
+        try {
+            List<String[]> dataList = Database.getInstance().getDataPengisi();
+            data = new Object[dataList.size()][4];
+            int i = 0;
+            for (String[] row : dataList) {
+                data[i] = (Object[]) row;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ambil Data Gagal! SQL Error!");
+        }
+
+        JTable jt = new JTable(data, new String[] { "Nama Lengkap", "Email", "Alamat", "Jumlah Isi" });
+        jt.setEnabled(false);
+        JScrollPane js = new JScrollPane(jt);
+        js.setBounds(150, 160, 1920 * 3 / 4 - 300, 420);
+
+        bgPanel[9].add(bgLabel[9]);
+        bgPanel[9].add(js);
+        bgPanel[9].setVisible(false);
+
+
+        // JLabel labelText = new JLabel("Admin Regsosek");
+        // labelText.setBounds(150, 18, 320, 42);
+        // labelText.setBackground(null);
+        // labelText.setForeground(Color.white);
+        // labelText.setFont(font(32));
+
+        // JLabel labelBlok = new JLabel("Data Pengisi");
+        // labelBlok.setBounds(150, 110, 330, 40);
+        // labelBlok.setBackground(null);
+        // labelBlok.setForeground(Color.white);
+        // labelBlok.setFont(font(32));
     }
 
     // public void fieldTabel(){

@@ -22,7 +22,7 @@ public class AppManager {
     User user = new User();       
 
     public AppManager(){
-        routing.showScreen(7);
+        routing.showScreen(9);
     }
 
     public void setRuta(Ruta ruta){
