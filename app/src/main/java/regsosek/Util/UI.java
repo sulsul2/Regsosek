@@ -7,20 +7,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
@@ -29,18 +20,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 
 import regsosek.models.old.Database;
-import regsosek.models.old.Penduduk;
 
 import javax.swing.JTextField;
 
@@ -172,6 +157,10 @@ public class UI {
         appManager.ui.statKedTextField.setText(null);
         appManager.ui.jUsahaTextField.setText(null);
         appManager.ui.lUsahaTextField.setText(null);
+        appManager.ui.usernameLogTextField.setText(null);
+        appManager.ui.usernameTextField.setText(null);
+        appManager.ui.passwordTextField.setText(null);
+        appManager.ui.passwordLogTextField.setText(null);
     }
 
     public JComboBox<String> createDropdown(int bgNum, int x, int y, int width, int height, int size, String[] isi){
@@ -294,6 +283,7 @@ public class UI {
         kabKotLabel = createLabel(0, 260, 303, 500, 40, "Kabupaten/Kota", 30);
         kecamatanLabel = createLabel(0, 260, 403, 500, 40, "Kecamatan", 30);
         desaKelLabel = createLabel(0, 260, 503, 500, 40, "Desa/Kelurahan", 30);
+        button(0, 200, 600, 200, 50, "Logout", "to-Login");
         button(0, 1000, 600, 200, 50, "Selanjutnya >", "page-2");
 
         bgPanel[0].add(bgLabel[0]);
@@ -478,14 +468,8 @@ public class UI {
     public void screenTabel(){
         createBackgroundFull(9, "bg.png");
 
-        adminLabel = createLabel(9, 200, 203, 320, 42, "Admin Regsosek", 30);
-        operatorLabel = createLabel(9, 200, 303, 330, 40, "Data Pengisi", 30);
-        // JLabel labelBg = new JLabel();
-        // labelBg.setBounds(120, 16, 350, 48);
-        // ImageIcon bgIcon = new ImageIcon(
-        //         new ImageIcon(getClass().getClassLoader().getResource("bg-label.png")).getImage()
-        //                 .getScaledInstance(350, 48, Image.SCALE_SMOOTH));
-        // labelBg.setIcon(bgIcon);
+        adminLabel = createLabel(9, 500, 103, 320, 48, "Admin Regsosek", 40);
+        operatorLabel = createLabel(9, 100, 203, 330, 40, "Data Pengisi", 30);
 
         Object[][] data = null;
         try {
@@ -494,6 +478,7 @@ public class UI {
             int i = 0;
             for (String[] row : dataList) {
                 data[i] = (Object[]) row;
+                i++;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ambil Data Gagal! SQL Error!");
@@ -502,10 +487,13 @@ public class UI {
         JTable jt = new JTable(data, new String[] { "Username", "Jumlah Pengisi"});
         jt.setEnabled(false);
         JScrollPane js = new JScrollPane(jt);
-        js.setBounds(150, 160, 1920 * 3 / 4 - 300, 420);
+        js.setBounds(100, 253, 1100, 300);
 
-        bgPanel[9].add(bgLabel[9]);
+        button(9, 200, 600, 200, 50, "Logout", "to-Login");
+        button(9, 1000, 600, 200, 50, "Isi Aja", "page-1");
+
         bgPanel[9].add(js);
+        bgPanel[9].add(bgLabel[9]);
         bgPanel[9].setVisible(false);
 
 

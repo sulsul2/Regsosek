@@ -131,4 +131,25 @@ public class Database implements Serializable {
         }
         return curr;
     }
+
+    public List<String[]> getDataPengisi() throws SQLException {
+        List<String[]> data = new ArrayList<String[]>();
+        try (Connection conn = getConnection()) {
+            String viewSQL = "SELECT username, count(user.id) FROM user INNER JOIN penduduk ON user.id=penduduk.user_id GROUP BY user.id";
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(viewSQL)) {
+                    while (rs.next()) {
+                        data.add(new String[] { rs.getString(1), rs.getString(2)});
+                    }
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return data;
+    }
 }

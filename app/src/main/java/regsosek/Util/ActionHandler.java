@@ -9,10 +9,10 @@ import regsosek.models.old.Kesulitan;
 import regsosek.models.old.Lokasi;
 import regsosek.models.old.Pekerjaan;
 
-import regsosek.models.old.Penduduk;
+// import regsosek.models.old.Penduduk;
 import regsosek.models.old.Ruta;
 import regsosek.models.old.Usaha;
-import regsosek.models.old.User;
+// import regsosek.models.old.User;
 
 public class ActionHandler implements ActionListener{
     AppManager appManager;
@@ -35,7 +35,11 @@ public class ActionHandler implements ActionListener{
                             appManager.routing.showScreen(7);
                         }
                         else{
-                            appManager.routing.showScreen(0);
+                            if(appManager.user.getRole().equals("ADMIN")){
+                                appManager.routing.showScreen(9);
+                            } else{
+                                appManager.routing.showScreen(0);
+                            }
                         }
                     } catch (SQLException e1) {
                         System.out.println(e1);
@@ -45,6 +49,7 @@ public class ActionHandler implements ActionListener{
                 }
                 break;
             case "to-Login":
+                appManager.ui.clearField();
                 appManager.routing.showScreen(7);
                 break;
             case "to-Register":
@@ -85,6 +90,9 @@ public class ActionHandler implements ActionListener{
                 appManager.routing.showScreen(5);
                 break;
             case "Home":
+                appManager.routing.showScreen(0);
+                break;
+            case "page-1":
                 appManager.routing.showScreen(0);
                 break;
             case "page-2":
@@ -353,9 +361,10 @@ public class ActionHandler implements ActionListener{
                                     appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
                                     
                                 } catch(Exception error) {
-                                    // System.out.println(error.getMessage());
+        
                                 }
                                 appManager.changePenduduk();
+                                appManager.ui.clearField();
                                 appManager.routing.showScreen(3);
                             }
                             else if(Integer.parseInt(appManager.ui.jUsahaTextField.getText()) <= 0){
@@ -421,9 +430,10 @@ public class ActionHandler implements ActionListener{
                         appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
                         
                     } catch(Exception error) {
-                        // System.out.println(error.getMessage());
+                        
                     }
                     appManager.changePenduduk();
+                    appManager.ui.clearField();
                     appManager.routing.showScreen(3);
                 }
                 break;
@@ -481,7 +491,7 @@ public class ActionHandler implements ActionListener{
                                     appManager.ruta.addAnggotaRumahTangga(appManager.penduduk);
                                     appManager.ruta.save();
                                 } catch(Exception error) {
-                                    // System.out.println(error.getMessage());
+                                    
                                 }
                                 Ruta ruta = new Ruta();
                                 appManager.setRuta(ruta);
@@ -557,7 +567,7 @@ public class ActionHandler implements ActionListener{
 
                         
                     } catch(Exception error) {
-                        // System.out.println(error.getMessage());
+                        
                     }
                     Ruta ruta = new Ruta();
                     appManager.setRuta(ruta);

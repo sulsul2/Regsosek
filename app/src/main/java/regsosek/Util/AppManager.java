@@ -1,14 +1,5 @@
 package regsosek.Util;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
 import regsosek.models.old.Ruta;
 import regsosek.models.old.User;
 import regsosek.models.old.Penduduk;
@@ -22,7 +13,7 @@ public class AppManager {
     User user = new User();       
 
     public AppManager(){
-        routing.showScreen(9);
+        routing.showScreen(7);
     }
 
     public void setRuta(Ruta ruta){

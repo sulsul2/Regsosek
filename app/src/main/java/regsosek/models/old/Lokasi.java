@@ -1,7 +1,5 @@
 package regsosek.models.old;
 
-import com.mysql.cj.protocol.a.NativeConstants.IntegerDataType;
-
 /**
  *
  * @author zein
